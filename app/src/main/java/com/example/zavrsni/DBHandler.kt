@@ -4,11 +4,13 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 import android.widget.Toast
 
 class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorFactory?, version: Int) : SQLiteOpenHelper(context, DATABASE_NAME,
     factory, DATABASE_VERSION){
 
+    val context = context
     companion object{
         private val DATABASE_NAME = "apapp.db"
         private val DATABASE_VERSION = 1
@@ -64,6 +66,36 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
             Toast.makeText(context, "Doslo do greske, jej!", Toast.LENGTH_SHORT).show()
         }
         db.close()
+    }
+
+    fun deleteObjekt(appID : Int): Boolean{
+        val qry = "DELETE FROM $TABLE_APP_NAME WHERE $COLUMN_APP_ID = $appID"
+        val db = this.writableDatabase
+        var result : Boolean = false
+
+        try {
+            val cursor = db.execSQL(qry)
+            result = true
+        }catch(e: Exception){
+            Log.e(ContentValues.TAG, "Greska u brisanju")
+        }
+        db.close()
+        return result
+    }
+
+    fun editObjekt(id: String, objektIme: String): Boolean{
+        var result = false
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put(COLUMN_APP_NAME, objektIme)
+        try{
+            db.update(TABLE_APP_NAME, contentValues, "$COLUMN_APP_ID = ?", arrayOf(id))
+            result = true
+        }catch (e: Exception){
+            Log.e(ContentValues.TAG, "Greska u editiranju")
+            result = false
+        }
+        return result
     }
 
 }
