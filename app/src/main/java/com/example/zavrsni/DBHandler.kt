@@ -11,19 +11,31 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
     factory, DATABASE_VERSION){
 
     val context = context
-    companion object{
+    companion object {
         private val DATABASE_NAME = "apapp.db"
         private val DATABASE_VERSION = 1
 
         val TABLE_APP_NAME = "Objekti"
         val COLUMN_APP_ID = "appid"
         val COLUMN_APP_NAME = "appime"
+
+        val TABLE_REZ_NAME = "Rezervacije"
+        val COLUMN_REZ_ID = "rezid"
+        val COLUMN_REZ_NAME = "rezime"
+        val COLUMN_APP_REZ_ID = "rezappid"
+        val COLUMN_REZ_APPNAME = "rezappime"
+        val COLUMN_DATE_AR = "datumdol"
+        val COLUMN_DATE_LE = "datumodl"
     }
 
     override fun onCreate(p0: SQLiteDatabase?) {
         val CREATE_TABLE_APP = ("CREATE TABLE $TABLE_APP_NAME ($COLUMN_APP_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "$COLUMN_APP_NAME TEXT)")
+        val CREATE_REZ_APP = ("CREATE TABLE $TABLE_REZ_NAME ($COLUMN_REZ_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "$COLUMN_REZ_NAME TEXT, $COLUMN_APP_REZ_ID INTEGER, $COLUMN_REZ_APPNAME TEXT, $COLUMN_DATE_AR TEXT" +
+                ", $COLUMN_DATE_LE TEXT)")
         p0?.execSQL(CREATE_TABLE_APP)
+        p0?.execSQL(CREATE_REZ_APP)
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
@@ -52,6 +64,32 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
         cursor.close()
         db.close()
         return objektovi
+    }
+
+    fun getRez(context: Context): ArrayList<Rezervacije>{
+        val qry = "SELECT * FROM $TABLE_REZ_NAME"
+        val db = this.readableDatabase
+        val cursor = db.rawQuery(qry, null)
+        val rezerv = ArrayList<Rezervacije>()
+        if(cursor.count == 0)
+            Toast.makeText(context, "Nema rezervcija", Toast.LENGTH_SHORT).show()
+        else{
+            cursor.moveToFirst()
+            while(!cursor.isAfterLast){
+                val rezervac = Rezervacije()
+                rezervac.idRez = cursor.getInt(cursor.getColumnIndex(COLUMN_REZ_ID))
+                rezervac.imeRez = cursor.getString(cursor.getColumnIndex(COLUMN_REZ_NAME))
+                rezervac.rezAppID = cursor.getInt(cursor.getColumnIndex(COLUMN_APP_REZ_ID))
+                rezervac.rezAppNaziv = cursor.getString(cursor.getColumnIndex(COLUMN_REZ_APPNAME))
+                rezervac.datumDOL = cursor.getString(cursor.getColumnIndex(COLUMN_DATE_AR))
+                rezervac.datumODL = cursor.getString(cursor.getColumnIndex(COLUMN_DATE_LE))
+                rezerv.add(rezervac)
+            }
+            Toast.makeText(context, "Pronadeno ${cursor.count} rezervacija", Toast.LENGTH_SHORT).show()
+        }
+        cursor.close()
+        db.close()
+        return rezerv
     }
 
     fun addObjekti(context: Context, objekat: Iznajmljivacki){

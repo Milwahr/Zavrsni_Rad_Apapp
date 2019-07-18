@@ -3,6 +3,7 @@ package com.example.zavrsni
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -78,6 +79,16 @@ class ObjAdapter(context: Context, val iznajm: ArrayList<Iznajmljivacki>): Recyc
                 .setNegativeButton("Odustani", DialogInterface.OnClickListener{dialog, which ->})
             val alert = builder.create()
             alert.show()
+        }
+
+        holder.btnSelect.setOnClickListener(){
+            val prenosIme = iznajmljiv.nazivApp
+            val prenosID = "$iznajmljiv.idApp"
+
+            val intent = Intent(context, PrikazRez::class.java)
+            intent.putExtra("rezID", prenosID)
+            intent.putExtra("rezIme", prenosIme)
+            context.startActivity(intent)
         }
     }
 
