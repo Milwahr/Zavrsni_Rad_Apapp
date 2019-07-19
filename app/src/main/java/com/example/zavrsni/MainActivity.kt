@@ -44,12 +44,6 @@ class MainActivity : AppCompatActivity() {
             adapter = viewAdapter
         }
 
-        /*
-        val adapter = ObjAdapter(this, objektLista)
-        val rv: RecyclerView = findViewById(R.id.rv)
-        rv.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false) as RecyclerView.LayoutManager
-        rv.adapter = adapter
-        */
     }
 
     override fun onResume(){

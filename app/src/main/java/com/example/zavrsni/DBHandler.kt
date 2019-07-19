@@ -69,7 +69,9 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
         val qry = "SELECT * FROM $TABLE_REZ_NAME"
         val db = this.readableDatabase
         val cursor = db.rawQuery(qry, null)
+
         val rezerv = ArrayList<Rezervacije>()
+
         if(cursor.count == 0)
             Toast.makeText(context, "Nema rezervcija", Toast.LENGTH_SHORT).show()
         else{

@@ -24,12 +24,11 @@ class PrikazRez : AppCompatActivity() {
         setContentView(R.layout.activity_prikaz_rez)
 
         val intent = intent
-        val rezID2 = intent?.getStringExtra("rezId")?.toInt()
 
         rezIme = intent.getStringExtra("rezIme")
 
         setTitle(rezIme)
-        //Toast.makeText(this, "ID je $rezID2", Toast.LENGTH_SHORT).show()
+
         prikazRez()
 
         fab2.setOnClickListener(){
