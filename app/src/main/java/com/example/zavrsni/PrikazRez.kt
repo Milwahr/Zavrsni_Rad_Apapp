@@ -1,11 +1,13 @@
 package com.example.zavrsni
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.activity_prikaz_rez.*
 
 class PrikazRez : AppCompatActivity() {
 
@@ -30,6 +32,12 @@ class PrikazRez : AppCompatActivity() {
         //Toast.makeText(this, "ID je $rezID2", Toast.LENGTH_SHORT).show()
         prikazRez()
 
+        fab2.setOnClickListener(){
+            val intent = Intent(this, DodajRez::class.java)
+            intent.putExtra("rezName", rezIme)
+            startActivity(intent)
+        }
+
     }
     fun prikazRez(){
         val rezLista = MainActivity.dbHandler.getRez(this)
@@ -40,5 +48,9 @@ class PrikazRez : AppCompatActivity() {
             layoutManager = viewManager
             adapter = viewAdapter
         }
+    }
+    override fun onResume(){
+        prikazRez()
+        super.onResume()
     }
 }

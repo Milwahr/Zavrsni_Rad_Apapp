@@ -26,7 +26,7 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="24dp"
             android:backgroundTint="#4BA0E7"
-            android:src="@drawable/ic_home_black_24dp"
+            android:src="@drawable/ic_add_circle_outline_black_24dp2"
             app:fabSize="normal"
             app:rippleColor="#00A38A8A" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

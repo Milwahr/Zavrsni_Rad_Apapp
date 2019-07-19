@@ -22,7 +22,6 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
         val TABLE_REZ_NAME = "Rezervacije"
         val COLUMN_REZ_ID = "rezid"
         val COLUMN_REZ_NAME = "rezime"
-        val COLUMN_APP_REZ_ID = "rezappid"
         val COLUMN_REZ_APPNAME = "rezappime"
         val COLUMN_DATE_AR = "datumdol"
         val COLUMN_DATE_LE = "datumodl"
@@ -32,7 +31,7 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
         val CREATE_TABLE_APP = ("CREATE TABLE $TABLE_APP_NAME ($COLUMN_APP_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "$COLUMN_APP_NAME TEXT)")
         val CREATE_REZ_APP = ("CREATE TABLE $TABLE_REZ_NAME ($COLUMN_REZ_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "$COLUMN_REZ_NAME TEXT, $COLUMN_APP_REZ_ID INTEGER, $COLUMN_REZ_APPNAME TEXT, $COLUMN_DATE_AR TEXT" +
+                "$COLUMN_REZ_NAME TEXT, $COLUMN_REZ_APPNAME TEXT, $COLUMN_DATE_AR TEXT" +
                 ", $COLUMN_DATE_LE TEXT)")
         p0?.execSQL(CREATE_TABLE_APP)
         p0?.execSQL(CREATE_REZ_APP)
@@ -79,7 +78,6 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
                 val rezervac = Rezervacije()
                 rezervac.idRez = cursor.getInt(cursor.getColumnIndex(COLUMN_REZ_ID))
                 rezervac.imeRez = cursor.getString(cursor.getColumnIndex(COLUMN_REZ_NAME))
-                rezervac.rezAppID = cursor.getInt(cursor.getColumnIndex(COLUMN_APP_REZ_ID))
                 rezervac.rezAppNaziv = cursor.getString(cursor.getColumnIndex(COLUMN_REZ_APPNAME))
                 rezervac.datumDOL = cursor.getString(cursor.getColumnIndex(COLUMN_DATE_AR))
                 rezervac.datumODL = cursor.getString(cursor.getColumnIndex(COLUMN_DATE_LE))
@@ -102,6 +100,23 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
             Toast.makeText(context, "Uspjesno dodan ${objekat.nazivApp}!", Toast.LENGTH_SHORT).show()
         }catch(e: Exception){
             Toast.makeText(context, "Doslo do greske, jej!", Toast.LENGTH_SHORT).show()
+        }
+        db.close()
+    }
+
+    fun addRez(context: Context, rezerv: Rezervacije){
+        val values = ContentValues()
+        values.put(COLUMN_REZ_NAME, rezerv.imeRez)
+        values.put(COLUMN_REZ_APPNAME, rezerv.rezAppNaziv)
+        values.put(COLUMN_DATE_AR, rezerv.datumDOL)
+        values.put(COLUMN_DATE_LE, rezerv.datumODL)
+
+        val db = this.writableDatabase
+        try{
+            db.insert(TABLE_REZ_NAME, null, values)
+            Toast.makeText(context, "Uspjesno dodana rezervacija ${rezerv.imeRez}", Toast.LENGTH_SHORT).show()
+        }catch (e: Exception){
+            Toast.makeText(context, "Greska u dodavanju rezervacije ${rezerv.imeRez}", Toast.LENGTH_SHORT).show()
         }
         db.close()
     }

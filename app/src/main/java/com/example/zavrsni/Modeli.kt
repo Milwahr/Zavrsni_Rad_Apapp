@@ -9,7 +9,7 @@ class Rezervacije {
     var idRez: Int = 0
     var imeRez: String = ""
     var rezAppNaziv: String = ""
-    var rezAppID: Int = 0
+    //var rezAppID: Int = 0
     var datumDOL: String = ""
     var datumODL: String = ""
 }

@@ -29,7 +29,8 @@ class RezAdapter(context: Context, val rezerv: ArrayList<Rezervacije>): Recycler
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val rezervator : Rezervacije = rezerv[position]
         holder.nazivRez.text = rezervator.imeRez
-        holder.datumRez.text = "${rezervator.datumDOL} - ${rezervator.datumODL}"
+        var tekstic = "${rezervator.datumDOL} - ${rezervator.datumODL}"
+        holder.datumRez.text = tekstic
     }
 
 }
