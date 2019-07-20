@@ -84,6 +84,7 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
                 rezervac.datumDOL = cursor.getString(cursor.getColumnIndex(COLUMN_DATE_AR))
                 rezervac.datumODL = cursor.getString(cursor.getColumnIndex(COLUMN_DATE_LE))
                 rezerv.add(rezervac)
+                cursor.moveToNext()
             }
             Toast.makeText(context, "Pronadeno ${cursor.count} rezervacija", Toast.LENGTH_SHORT).show()
         }
@@ -120,7 +121,6 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
         }catch (e: Exception){
             Toast.makeText(context, "Greska u dodavanju rezervacije ${rezerv.imeRez}", Toast.LENGTH_SHORT).show()
         }
-        db.close()
     }
 
     fun deleteObjekt(appID : Int): Boolean{
@@ -138,6 +138,21 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
         return result
     }
 
+    fun deleteRez (RezID : Int): Boolean{
+        val qry = "DELETE FROM $TABLE_REZ_NAME WHERE $COLUMN_REZ_ID = $RezID"
+        val db = this.writableDatabase
+        var result : Boolean = false
+
+        try{
+            db.execSQL(qry)
+            result = true
+        }catch (e: Exception){
+            Log.e(ContentValues.TAG, "Greska u brisanju")
+        }
+        db.close()
+        return result
+    }
+
     fun editObjekt(id: String, objektIme: String): Boolean{
         var result = false
         val db = this.writableDatabase
@@ -145,6 +160,24 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
         contentValues.put(COLUMN_APP_NAME, objektIme)
         try{
             db.update(TABLE_APP_NAME, contentValues, "$COLUMN_APP_ID = ?", arrayOf(id))
+            result = true
+        }catch (e: Exception){
+            Log.e(ContentValues.TAG, "Greska u editiranju")
+            result = false
+        }
+        return result
+    }
+
+    fun editRez (id: String, rezIme: String, dateDOL: String, dateODL: String): Boolean{
+        var result: Boolean = false
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put(COLUMN_REZ_NAME, rezIme)
+        contentValues.put(COLUMN_DATE_AR, dateDOL)
+        contentValues.put(COLUMN_DATE_LE, dateODL)
+
+        try{
+            db.update(TABLE_REZ_NAME, contentValues, "$COLUMN_REZ_ID = ?", arrayOf(id))
             result = true
         }catch (e: Exception){
             Log.e(ContentValues.TAG, "Greska u editiranju")

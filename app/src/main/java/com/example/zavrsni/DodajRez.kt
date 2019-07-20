@@ -12,6 +12,7 @@ class DodajRez : AppCompatActivity() {
         setContentView(R.layout.activity_dodaj_rez)
 
         val rezName = intent.getStringExtra("rezName")
+        objektIme.text = rezName
 
         spremiRez.setOnClickListener(){
             if(txtnovaRez.text.isEmpty()){
