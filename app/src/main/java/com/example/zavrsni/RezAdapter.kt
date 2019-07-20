@@ -6,9 +6,12 @@ import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.editrez.view.*
 import kotlinx.android.synthetic.main.novi_prikaz_rez.view.*
+import org.w3c.dom.Text
 
 class RezAdapter(context: Context, val rezerv: ArrayList<Rezervacije>): RecyclerView.Adapter<RezAdapter.ViewHolder>(){
 
@@ -34,27 +37,6 @@ class RezAdapter(context: Context, val rezerv: ArrayList<Rezervacije>): Recycler
         holder.nazivRez.text = rezervator.imeRez
         holder.datumRez.text = "${rezervator.datumDOL} - ${rezervator.datumODL}"
 
-        /*
-        holder.btnDelete.setOnClickListener(){
-            val objektIme = iznajmljiv.izn_ime
-
-            var alertDialog = AlertDialog.Builder(mCtx)
-                .setTitle("Upozorenje")
-                .setMessage("Jeste li sigurni da biste brisali objekat $objektIme?")
-                .setPositiveButton("Yes", DialogInterface.OnClickListener{ dialog, which ->
-                    if (MainActivity.dbHandler.deleteObjekat(iznajmljiv.izn_id)){
-                        iznajApp.removeAt(position)
-                        notifyItemRemoved(position)
-                        notifyItemRangeChanged(position, iznajApp.size)
-                        Toast.makeText(mCtx, "Obrisan je objekat $objektIme", Toast.LENGTH_SHORT).show()
-                    }else
-                        Toast.makeText(mCtx, "Greska u brisanju objekta $objektIme", Toast.LENGTH_SHORT).show()
-                })
-                .setNegativeButton("No", DialogInterface.OnClickListener{ dialog, which -> })
-                .setIcon(R.drawable.ic_warning_black_24dp)
-                .show()
-        }
-         */
         holder.rezDelete.setOnClickListener(){
             val rezervacijaIme = rezervator.imeRez
 
@@ -104,6 +86,38 @@ class RezAdapter(context: Context, val rezerv: ArrayList<Rezervacije>): Recycler
             alert.show()
         }
          */
+        holder.rezEdit.setOnClickListener(){
+            val inflater = LayoutInflater.from(context)
+            val view = inflater.inflate(R.layout.editrez, null)
+
+            val noviRezNaziv : TextView = view.findViewById(R.id.noviRezNaziv)
+            val noviDatumDol : TextView = view.findViewById(R.id.noviDatumDol)
+            val noviDatumOdl : TextView = view.findViewById(R.id.noviDatumOdl)
+
+            noviRezNaziv.text = rezervator.imeRez
+            noviDatumDol.text = rezervator.datumDOL
+            noviDatumOdl.text = rezervator.datumODL
+
+            val builder = AlertDialog.Builder(context)
+                .setTitle("Uredi Rezervaciju")
+                .setView(view)
+                .setPositiveButton("Uredi", DialogInterface.OnClickListener{dialog, which ->
+                    val isUpdate = MainActivity.dbHandler.editRez(rezervator.idRez.toString(), view.noviRezNaziv.text.toString(),
+                        view.noviDatumDol.text.toString(), view.noviDatumOdl.text.toString())
+                    if(isUpdate == true){
+                        rezerv[position].imeRez = view.noviRezNaziv.text.toString()
+                        rezerv[position].datumDOL = view.noviDatumDol.text.toString()
+                        rezerv[position].datumODL = view.noviDatumOdl.text.toString()
+                        notifyDataSetChanged()
+                        Toast.makeText(context, "Uspjesno uredjeno", Toast.LENGTH_SHORT).show()
+                    }else{
+                        Toast.makeText(context, "Greska u uredjivanju", Toast.LENGTH_SHORT).show()
+                    }
+                })
+                .setNegativeButton("Odustani", DialogInterface.OnClickListener{dialog, which ->})
+            val alert = builder.create()
+            alert.show()
+        }
     }
 
 }
