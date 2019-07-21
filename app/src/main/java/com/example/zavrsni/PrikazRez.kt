@@ -39,7 +39,7 @@ class PrikazRez : AppCompatActivity() {
 
     }
     fun prikazRez(){
-        val rezLista = MainActivity.dbHandler.getRez(this)
+        val rezLista = MainActivity.dbHandler.getRez2(this, rezIme)
         viewManager = LinearLayoutManager(this)
         viewAdapter = RezAdapter(this, rezLista)
         recyclerView = findViewById<RecyclerView>(R.id.rv2).apply{

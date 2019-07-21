@@ -57,35 +57,6 @@ class RezAdapter(context: Context, val rezerv: ArrayList<Rezervacije>): Recycler
                 .show()
         }
 
-        /*
-        holder.btnUpdate.setOnClickListener(){
-            val inflater = LayoutInflater.from(mCtx)
-            val view = inflater.inflate(R.layout.objekat_edit, null)
-
-            //val txtObjekatIme : TextView = view.findViewById(R.id.edit_objektIme)
-            val txtObjekatIme2 : TextView = view.findViewById(R.id.stari_naziv)
-
-            txtObjekatIme2.text = iznajmljiv.izn_ime
-
-            val builder = AlertDialog.Builder(mCtx)
-                .setTitle("Uredi Objekat")
-                .setView(view)
-                .setPositiveButton("Uredi", DialogInterface.OnClickListener{dialog, which ->
-                    val isUpdate = MainActivity.dbHandler.editObjekat(iznajmljiv.izn_id.toString(),
-                        view.edit_objektIme.text.toString())
-                    if(isUpdate == true){
-                        iznajApp[position].izn_ime = view.edit_objektIme.text.toString()
-                        notifyDataSetChanged()
-                        Toast.makeText(mCtx, "Uspjesno editirano", Toast.LENGTH_SHORT).show()
-                    }else{
-                        Toast.makeText(mCtx, "Greska u editiranju", Toast.LENGTH_SHORT).show()
-                    }
-                })
-                .setNegativeButton("Odustani", DialogInterface.OnClickListener{dialog, which ->})
-            val alert = builder.create()
-            alert.show()
-        }
-         */
         holder.rezEdit.setOnClickListener(){
             val inflater = LayoutInflater.from(context)
             val view = inflater.inflate(R.layout.editrez, null)
