@@ -1,6 +1,8 @@
 package com.example.zavrsni
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.app.DatePickerDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.view.LayoutInflater
@@ -12,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.editrez.view.*
 import kotlinx.android.synthetic.main.novi_prikaz_rez.view.*
 import org.w3c.dom.Text
+import java.util.*
+import kotlin.collections.ArrayList
 
 class RezAdapter(context: Context, val rezerv: ArrayList<Rezervacije>): RecyclerView.Adapter<RezAdapter.ViewHolder>(){
 

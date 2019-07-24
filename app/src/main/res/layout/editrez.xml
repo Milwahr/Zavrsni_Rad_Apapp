@@ -86,5 +86,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.09"
         app:layout_constraintStart_toEndOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/noviDatumDol" />
+        app:layout_constraintTop_toBottomOf="@+id/noviDatumDol"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

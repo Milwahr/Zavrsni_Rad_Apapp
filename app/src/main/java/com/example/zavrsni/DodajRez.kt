@@ -1,9 +1,13 @@
 package com.example.zavrsni
 
+import android.annotation.SuppressLint
+import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_dodaj_rez.*
+import java.util.*
 
 class DodajRez : AppCompatActivity() {
 
@@ -13,6 +17,13 @@ class DodajRez : AppCompatActivity() {
 
         val rezName = intent.getStringExtra("rezName")
         objektIme.text = rezName
+
+        txtnovidatumdol.setOnClickListener(){
+            prikDatumDol()
+        }
+        txtNoviDatumOdl.setOnClickListener(){
+            prikDatumOdl()
+        }
 
         spremiRez.setOnClickListener(){
             if(txtnovaRez.text.isEmpty()){
@@ -50,5 +61,29 @@ class DodajRez : AppCompatActivity() {
         txtnovaRez.text.clear()
         txtNoviDatumOdl.text.clear()
         txtnovidatumdol.text.clear()
+    }
+
+
+    @SuppressLint("SetTextI18n")
+    fun prikDatumDol(){
+        val c = Calendar.getInstance()
+        val day = c.get(Calendar.DAY_OF_MONTH)
+        val month = c.get(Calendar.MONTH)
+        val year = c.get(Calendar.YEAR)
+
+        val dpd = DatePickerDialog(this, android.R.style.Theme_Holo_Dialog, DatePickerDialog.OnDateSetListener { datePicker, year, month, day ->
+        txtnovidatumdol.setText("$day/$month/$year")}, year, month, day)
+        dpd.show()
+    }
+    @SuppressLint("SetTextI18n")
+    fun prikDatumOdl(){
+        val c = Calendar.getInstance()
+        val day = c.get(Calendar.DAY_OF_MONTH)
+        val month = c.get(Calendar.MONTH)
+        val year = c.get(Calendar.YEAR)
+
+        val dpd = DatePickerDialog(this, android.R.style.Theme_Holo_Dialog, DatePickerDialog.OnDateSetListener { datePicker, year, month, day ->
+            txtNoviDatumOdl.setText("$day/$month/$year")}, year, month, day)
+        dpd.show()
     }
 }

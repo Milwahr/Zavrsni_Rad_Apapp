@@ -1,13 +1,16 @@
 package com.example.zavrsni
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_prikaz_rez.*
+import java.util.*
 
 class PrikazRez : AppCompatActivity() {
 
@@ -52,4 +55,5 @@ class PrikazRez : AppCompatActivity() {
         prikazRez()
         super.onResume()
     }
+
 }
