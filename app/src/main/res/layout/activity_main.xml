@@ -30,5 +30,16 @@
             android:src="@drawable/ic_home_black_24dp"
             app:fabSize="normal"
             app:rippleColor="#00A38A8A" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabSve"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="250dp"
+            android:layout_marginBottom="24dp"
+            android:backgroundTint="#FFC107"
+            android:src="@drawable/ic_format_list_bulleted_black_24dp"
+            app:rippleColor="#00A38A8A" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

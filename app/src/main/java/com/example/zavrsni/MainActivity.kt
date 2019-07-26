@@ -45,6 +45,11 @@ class MainActivity : AppCompatActivity() {
             val i = Intent(this, addObjekat::class.java)
             startActivity(i)
         }
+
+        fabSve.setOnClickListener(){
+            val i = Intent(this, PrikazSvihRez::class.java)
+            startActivity(i)
+        }
     }
 
     @SuppressLint("WrongConstant")
