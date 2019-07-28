@@ -38,6 +38,8 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, "$formatted", Toast.LENGTH_SHORT).show()
         */
 
+        setTitle("Iznajmljivacki objekti")
+
         dbHandler = DBHandler(this, null, null, 1)
         prikazObjekti()
 

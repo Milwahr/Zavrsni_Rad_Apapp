@@ -43,7 +43,7 @@ class ObjAdapter(context: Context, val iznajm: ArrayList<Iznajmljivacki>): Recyc
                 .setTitle("Upozorenje!")
                 .setMessage("Da li ste sigurno da zelite obrisati $objektIme")
                 .setPositiveButton("Da", DialogInterface.OnClickListener{dialog, which ->
-                    if(MainActivity.dbHandler.deleteObjekt(iznajmljiv.idApp)){
+                    if(MainActivity.dbHandler.deleteObjekt(iznajmljiv.idApp, iznajmljiv.nazivApp)){
                         iznajm.removeAt(position)
                         notifyItemRemoved(position)
                         notifyItemRangeChanged(position, iznajm.size)

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_dodaj_rez.*
 import java.util.*
 
@@ -46,6 +47,15 @@ class DodajRez : AppCompatActivity() {
                 rezerv.rezAppNaziv = rezName
 
                 MainActivity.dbHandler.addRez(this, rezerv)
+
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Obavijest!")
+                builder.setMessage("Uspjesno dodana nova Rezervacija!")
+                builder.setIcon(R.drawable.ic_check_black_24dp)
+                builder.setPositiveButton("Ok"){dialog, which ->}
+                val dialog: AlertDialog = builder.create()
+                dialog.show()
+
                 clearEdits()
                 txtnovaRez.requestFocus()
             }

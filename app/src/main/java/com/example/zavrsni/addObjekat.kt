@@ -3,6 +3,7 @@ package com.example.zavrsni
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_add_objekat.*
 
 class addObjekat : AppCompatActivity() {
@@ -20,6 +21,15 @@ class addObjekat : AppCompatActivity() {
                 objekat.nazivApp = edittxt_Naziv.text.toString()
 
                 MainActivity.dbHandler.addObjekti(this, objekat)
+
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Obavijest!")
+                builder.setMessage("Uspjesno dodan objekt!")
+                builder.setIcon(R.drawable.ic_check_black_24dp)
+                builder.setPositiveButton("Ok"){dialog, which ->}
+                val dialog: AlertDialog = builder.create()
+                dialog.show()
+
                 clearEdits()
                 edittxt_Naziv.requestFocus()
             }

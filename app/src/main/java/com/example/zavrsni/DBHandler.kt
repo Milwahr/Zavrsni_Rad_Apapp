@@ -151,13 +151,14 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
         }
     }
 
-    fun deleteObjekt(appID : Int): Boolean{
+    fun deleteObjekt(appID : Int, appName: String): Boolean{
         val qry = "DELETE FROM $TABLE_APP_NAME WHERE $COLUMN_APP_ID = $appID"
         val db = this.writableDatabase
         var result : Boolean = false
 
         try {
-            val cursor = db.execSQL(qry)
+            db.execSQL(qry)
+            db.delete(TABLE_REZ_NAME, "$COLUMN_REZ_APPNAME = ?", arrayOf(appName))
             result = true
         }catch(e: Exception){
             Log.e(ContentValues.TAG, "Greska u brisanju")
