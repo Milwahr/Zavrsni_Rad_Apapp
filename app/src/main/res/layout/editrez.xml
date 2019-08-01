@@ -66,7 +66,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
-        android:hint="Dolazak"
+        android:hint="dd/mm/gggg"
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.09"
@@ -81,10 +81,22 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
-        android:hint="Odlazak"
+        android:hint="dd/mm/gggg"
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.09"
         app:layout_constraintStart_toEndOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/noviDatumDol"/>
+        app:layout_constraintTop_toBottomOf="@+id/noviDatumDol" />
+
+    <TextView
+        android:id="@+id/datumError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text=" "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/noviDatumOdl" />
 </androidx.constraintlayout.widget.ConstraintLayout>
