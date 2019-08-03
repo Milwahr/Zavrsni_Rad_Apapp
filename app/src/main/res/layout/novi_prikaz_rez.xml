@@ -20,33 +20,33 @@
         android:layout_width="163dp"
         android:layout_height="18dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rezNaziv" />
 
     <ImageButton
         android:id="@+id/editRez"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="49dp"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintStart_toEndOf="@+id/rezNaziv"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_edit" />
+        app:srcCompat="@drawable/ic_ikona_edit" />
 
     <ImageButton
         android:id="@+id/deleteRez"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/editRez"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_delete" />
+        app:srcCompat="@drawable/ic_ikona_delete_rez" />
 
     <ImageView
         android:id="@+id/imageView2"

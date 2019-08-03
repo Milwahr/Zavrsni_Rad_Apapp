@@ -17,6 +17,8 @@ class EditRez : AppCompatActivity() {
 
         intent = intent
 
+        setTitle("Uredi Rezervaciju")
+
         editovanNaziv.setText(intent.getStringExtra("prenosIme"))
         editovanDatumDol.setText(intent.getStringExtra("prenosDOL"))
         editovanDatumOdl.setText(intent.getStringExtra("prenosODL"))
@@ -54,26 +56,14 @@ class EditRez : AppCompatActivity() {
             finish()
         }
     }
-    /*
-    @SuppressLint("SetTextI18n")
+
     fun prikDatumDol(){
         val c = Calendar.getInstance()
         val day = c.get(Calendar.DAY_OF_MONTH)
         val month = c.get(Calendar.MONTH)
         val year = c.get(Calendar.YEAR)
 
-        val dpd = DatePickerDialog(this, android.R.style.Theme_Holo_Dialog, DatePickerDialog.OnDateSetListener { datePicker, year, month, day ->
-        txtnovidatumdol.setText("$day/$month/$year")}, year, month, day)
-        dpd.show()
-    }
-     */
-    fun prikDatumDol(){
-        val c = Calendar.getInstance()
-        val day = c.get(Calendar.DAY_OF_MONTH)
-        val month = c.get(Calendar.MONTH)
-        val year = c.get(Calendar.YEAR)
-
-        val dpd = DatePickerDialog(this, android.R.style.Theme_Holo_Dialog, DatePickerDialog.OnDateSetListener { datePicker, year, month, day ->
+        val dpd = DatePickerDialog(this, android.R.style.ThemeOverlay_Material_Light, DatePickerDialog.OnDateSetListener { datePicker, year, month, day ->
             editovanDatumDol.setText("$day/$month/$year")}, year, month, day)
         dpd.show()
     }
