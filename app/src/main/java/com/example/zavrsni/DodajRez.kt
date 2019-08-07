@@ -82,7 +82,7 @@ class DodajRez : AppCompatActivity() {
         val year = c.get(Calendar.YEAR)
 
         val dpd = DatePickerDialog(this, android.R.style.Theme_Holo_Dialog, DatePickerDialog.OnDateSetListener { datePicker, year, month, day ->
-        txtnovidatumdol.setText("$day/$month/$year")}, year, month, day)
+        txtnovidatumdol.setText("$year/$month/$day")}, year, month, day)
         dpd.show()
     }
     @SuppressLint("SetTextI18n")
@@ -93,7 +93,7 @@ class DodajRez : AppCompatActivity() {
         val year = c.get(Calendar.YEAR)
 
         val dpd = DatePickerDialog(this, android.R.style.Theme_Holo_Dialog, DatePickerDialog.OnDateSetListener { datePicker, year, month, day ->
-            txtNoviDatumOdl.setText("$day/$month/$year")}, year, month, day)
+            txtNoviDatumOdl.setText("$year/$month/$day")}, year, month, day)
         dpd.show()
     }
 }

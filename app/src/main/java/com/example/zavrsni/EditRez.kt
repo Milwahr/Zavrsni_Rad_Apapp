@@ -54,6 +54,7 @@ class EditRez : AppCompatActivity() {
 
         editOdustanuj.setOnClickListener(){
             finish()
+
         }
     }
 
@@ -63,8 +64,8 @@ class EditRez : AppCompatActivity() {
         val month = c.get(Calendar.MONTH)
         val year = c.get(Calendar.YEAR)
 
-        val dpd = DatePickerDialog(this, android.R.style.ThemeOverlay_Material_Light, DatePickerDialog.OnDateSetListener { datePicker, year, month, day ->
-            editovanDatumDol.setText("$day/$month/$year")}, year, month, day)
+        val dpd = DatePickerDialog(this, android.R.style.Theme_Holo_Dialog, DatePickerDialog.OnDateSetListener { datePicker, year, month, day ->
+            editovanDatumDol.setText("$year/$month/$day")}, year, month, day)
         dpd.show()
     }
     fun prikDatumOdl(){
@@ -74,7 +75,7 @@ class EditRez : AppCompatActivity() {
         val year = c.get(Calendar.YEAR)
 
         val dpd = DatePickerDialog(this, android.R.style.Theme_Holo_Dialog, DatePickerDialog.OnDateSetListener { datePicker, year, month, day ->
-            editovanDatumOdl.setText("$day/$month/$year")}, year, month, day)
+            editovanDatumOdl.setText("$year/$month/$day")}, year, month, day)
         dpd.show()
     }
 }
