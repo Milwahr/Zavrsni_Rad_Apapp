@@ -2,11 +2,13 @@ package com.example.zavrsni
 
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_prikaz_rez.*
@@ -22,6 +24,7 @@ class PrikazRez : AppCompatActivity() {
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_prikaz_rez)
@@ -41,8 +44,9 @@ class PrikazRez : AppCompatActivity() {
         }
 
     }
+    @RequiresApi(Build.VERSION_CODES.O)
     fun prikazRez(){
-        val rezLista = MainActivity.dbHandler.getRez2(this, rezIme)
+        val rezLista = MainActivity.dbHandler.getRezSpecific(this, rezIme)
         viewManager = LinearLayoutManager(this)
         viewAdapter = RezAdapter(this, rezLista)
         recyclerView = findViewById<RecyclerView>(R.id.rv2).apply{
@@ -51,6 +55,7 @@ class PrikazRez : AppCompatActivity() {
             adapter = viewAdapter
         }
     }
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onResume(){
         prikazRez()
         super.onResume()

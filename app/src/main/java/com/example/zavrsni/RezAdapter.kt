@@ -70,18 +70,7 @@ class RezAdapter(context: Context, val rezerv: ArrayList<Rezervacije>): Recycler
         }
 
         holder.rezEdit.setOnClickListener() {
-            /*val inflater = LayoutInflater.from(context)
-            val view = inflater.inflate(R.layout.editrez, null)
 
-
-            val noviRezNaziv : TextView = view.findViewById(R.id.noviRezNaziv)
-            val noviDatumDol : TextView = view.findViewById(R.id.noviDatumDol)
-            val noviDatumOdl : TextView = view.findViewById(R.id.noviDatumOdl)
-
-            noviRezNaziv.text = rezervator.imeRez
-            noviDatumDol.text = rezervator.datumDOL
-            noviDatumOdl.text = rezervator.datumODL
-*/
             val prenosIme = rezervator.imeRez
             val prenosDOL = rezervator.datumDOL
             val prenosODL = rezervator.datumODL
@@ -93,27 +82,6 @@ class RezAdapter(context: Context, val rezerv: ArrayList<Rezervacije>): Recycler
             intent.putExtra("prenosODL", prenosODL)
             intent.putExtra("prenosID", prenosID)
             context.startActivity(intent)
-
-            /*val builder = AlertDialog.Builder(context)
-                .setTitle("Uredi Rezervaciju")
-                .setView(view)
-                .setPositiveButton("Uredu", DialogInterface.OnClickListener{ dialog, which ->
-                    val isUpdate = MainActivity.dbHandler.editRez(rezervator.idRez.toString(), view.noviRezNaziv.text.toString(),
-                        view.noviDatumDol.text.toString(), view.noviDatumOdl.text.toString())
-                    if(isUpdate == true){
-                        rezerv[position].imeRez = view.noviRezNaziv.text.toString()
-                        rezerv[position].datumDOL = view.noviDatumDol.text.toString()
-                        rezerv[position].datumODL = view.noviDatumOdl.text.toString()
-                        notifyDataSetChanged()
-                        Toast.makeText(context, "Uspjesno uredjeno", Toast.LENGTH_SHORT).show()
-                    }else{
-                        Toast.makeText(context, "Greska u uredjivanju", Toast.LENGTH_SHORT).show()
-                    }
-                })
-                .setNegativeButton("Odustani", DialogInterface.OnClickListener{dialog, which ->})
-            val alert = builder.create()
-            alert.show()
-            }*/
         }
     }
 }

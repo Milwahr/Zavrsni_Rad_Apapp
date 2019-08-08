@@ -4,14 +4,20 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.os.Build
 import android.util.Log
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorFactory?, version: Int) : SQLiteOpenHelper(context, DATABASE_NAME,
     factory, DATABASE_VERSION){
 
     val context = context
     companion object {
+
+
         private val DATABASE_NAME = "apapp.db"
         private val DATABASE_VERSION = 1
 
@@ -115,6 +121,46 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
                 cursor.moveToNext()
             }
             Toast.makeText(context, "Pronadjeno ${cursor.count} rezervacija", Toast.LENGTH_SHORT).show()
+        }
+        cursor.close()
+        db.close()
+        return rezerv
+    }
+
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getRezSpecific(context: Context, appIme: String): ArrayList<Rezervacije>{
+        val qry = "SELECT * FROM $TABLE_REZ_NAME WHERE $COLUMN_REZ_APPNAME = ? ORDER BY $COLUMN_DATE_AR ASC"
+        val db = this.writableDatabase
+        val cursor = db.rawQuery(qry, arrayOf(appIme))
+        val rezerv = ArrayList<Rezervacije>()
+
+        val cal = LocalDate.now()
+        val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
+        val formatted = cal.format(formatter)
+        var brojac = 0
+
+        if(cursor.count == 0)
+            Toast.makeText(context, "Nema rezervacija u objektu $appIme", Toast.LENGTH_SHORT).show()
+        else{
+            cursor.moveToFirst()
+            while (!cursor.isAfterLast){
+                val rezervac = Rezervacije()
+                var datumPih = cursor.getString(cursor.getColumnIndex(COLUMN_DATE_AR)).toString()
+                if(MainActivity.Usporedba.usporedba(datumPih)==1){
+                rezervac.idRez = cursor.getInt(cursor.getColumnIndex(COLUMN_REZ_ID))
+                rezervac.imeRez = cursor.getString(cursor.getColumnIndex(COLUMN_REZ_NAME))
+                rezervac.rezAppNaziv = cursor.getString(cursor.getColumnIndex(COLUMN_REZ_APPNAME))
+                rezervac.datumDOL = cursor.getString(cursor.getColumnIndex(COLUMN_DATE_AR))
+                rezervac.datumODL = cursor.getString(cursor.getColumnIndex(COLUMN_DATE_LE))
+                rezerv.add(rezervac)
+                cursor.moveToNext()
+                brojac++
+                }else{
+                    Toast.makeText(context, "Pizda materina", Toast.LENGTH_SHORT).show()
+                }
+            }
+            Toast.makeText(context, "Pronadjeno $brojac rezervacija", Toast.LENGTH_SHORT).show()
         }
         cursor.close()
         db.close()

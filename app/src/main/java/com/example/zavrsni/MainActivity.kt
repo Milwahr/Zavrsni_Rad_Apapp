@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Adapter
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -31,14 +32,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        /*
-        val cal = LocalDate.now()
-        val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
-        val formatted = cal.format(formatter)
-        Toast.makeText(this, "$formatted", Toast.LENGTH_SHORT).show()
-        */
-
-        setTitle("Iznajmljivacki objekti")
+        //setTitle("Iznajmljivacki objekti")
 
         dbHandler = DBHandler(this, null, null, 1)
         prikazObjekti()
@@ -70,5 +64,23 @@ class MainActivity : AppCompatActivity() {
     override fun onResume(){
         prikazObjekti()
         super.onResume()
+    }
+    object Usporedba{
+        @RequiresApi(Build.VERSION_CODES.O)
+        fun usporedba(datum1: String): Int{
+            val cal = LocalDate.now()
+            val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
+            val formatted = cal.format(formatter)
+            val datum2 = formatted.toString()
+            Log.e("TAG", "$datum2 - $datum1")
+            if(datum2.compareTo(datum1) > 0) {
+                return 0
+                Log.e("TAG", "Sad je 0")
+            }
+            else {
+                Log.e("TAG", "Sad je 1")
+                return 1
+            }
+        }
     }
 }
