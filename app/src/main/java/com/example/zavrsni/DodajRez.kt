@@ -108,11 +108,13 @@ class DodajRez : AppCompatActivity() {
         }
     }
     fun editMjesec(mjesec: Int): String{
-        var mjesecEdit = mjesec.toString()
+        var mjesecEdit = (mjesec+1).toString()
         if(mjesec<10){
             mjesecEdit = "0$mjesecEdit"
+            Log.e("MJ", "$mjesecEdit")
             return mjesecEdit
         }else{
+            Log.e("MJ", "$mjesec")
             return mjesec.toString()
         }
     }

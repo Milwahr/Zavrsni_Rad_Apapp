@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //setTitle("Iznajmljivacki objekti")
+        setTitle("Iznajmljivacki objekti")
 
         dbHandler = DBHandler(this, null, null, 1)
         prikazObjekti()
@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
             val formatted = cal.format(formatter)
             val datum2 = formatted.toString()
             Log.e("TAG", "$datum2 - $datum1")
-            if(datum2.compareTo(datum1) > 0) {
+            if(datum2.compareTo(datum1) >= 0) {
                 return 0
                 Log.e("TAG", "Sad je 0")
             }

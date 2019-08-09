@@ -135,9 +135,6 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
         val cursor = db.rawQuery(qry, arrayOf(appIme))
         val rezerv = ArrayList<Rezervacije>()
 
-        val cal = LocalDate.now()
-        val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
-        val formatted = cal.format(formatter)
         var brojac = 0
 
         if(cursor.count == 0)
