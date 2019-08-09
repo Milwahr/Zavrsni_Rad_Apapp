@@ -154,11 +154,11 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
                 rezervac.datumDOL = cursor.getString(cursor.getColumnIndex(COLUMN_DATE_AR))
                 rezervac.datumODL = cursor.getString(cursor.getColumnIndex(COLUMN_DATE_LE))
                 rezerv.add(rezervac)
-                cursor.moveToNext()
                 brojac++
                 }else{
                     Toast.makeText(context, "Pizda materina", Toast.LENGTH_SHORT).show()
                 }
+                cursor.moveToNext()
             }
             Toast.makeText(context, "Pronadjeno $brojac rezervacija", Toast.LENGTH_SHORT).show()
         }

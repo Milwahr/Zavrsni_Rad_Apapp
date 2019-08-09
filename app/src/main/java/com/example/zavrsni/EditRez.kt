@@ -65,7 +65,7 @@ class EditRez : AppCompatActivity() {
         val year = c.get(Calendar.YEAR)
 
         val dpd = DatePickerDialog(this, android.R.style.Theme_Holo_Dialog, DatePickerDialog.OnDateSetListener { datePicker, year, month, day ->
-            editovanDatumDol.setText("$year/$month/$day")}, year, month, day)
+            editovanDatumDol.setText("$year/${editMjesec(month)}/${editDan(day)}")}, year, month, day)
         dpd.show()
     }
     fun prikDatumOdl(){
@@ -75,7 +75,25 @@ class EditRez : AppCompatActivity() {
         val year = c.get(Calendar.YEAR)
 
         val dpd = DatePickerDialog(this, android.R.style.Theme_Holo_Dialog, DatePickerDialog.OnDateSetListener { datePicker, year, month, day ->
-            editovanDatumOdl.setText("$year/$month/$day")}, year, month, day)
+            editovanDatumOdl.setText("$year/${editMjesec(month)}/${editDan(day)}")}, year, month, day)
         dpd.show()
+    }
+    fun editDan(dan: Int): String{
+        var danEdit = dan.toString()
+        if(dan<10){
+            danEdit = "0$danEdit"
+            return danEdit
+        }else{
+            return dan.toString()
+        }
+    }
+    fun editMjesec(mjesec: Int): String{
+        var mjesecEdit = mjesec.toString()
+        if(mjesec<10){
+            mjesecEdit = "0$mjesecEdit"
+            return mjesecEdit
+        }else{
+            return mjesec.toString()
+        }
     }
 }
