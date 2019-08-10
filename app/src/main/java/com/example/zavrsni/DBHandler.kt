@@ -153,7 +153,7 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
                 rezerv.add(rezervac)
                 brojac++
                 }else{
-                    Toast.makeText(context, "Pizda materina", Toast.LENGTH_SHORT).show()
+                    Log.e("TAG", "Nepripadam")
                 }
                 cursor.moveToNext()
             }

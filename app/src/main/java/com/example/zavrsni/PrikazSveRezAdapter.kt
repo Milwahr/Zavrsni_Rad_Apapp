@@ -3,21 +3,28 @@ package com.example.zavrsni
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.graphics.Color
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.novi_prikaz_sve_rez.view.*
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 
 class PrikazSveAdapter(context: Context, val rezerv: ArrayList<Rezervacije>): RecyclerView.Adapter<PrikazSveAdapter.ViewHolder>(){
 
     val context = context
+
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val sveNaziv = itemView.prikazSveRezNaziv
         val sveDatum = itemView.prikazSveDatum
         val sveApp = itemView.prikazSveApp
+        val statusSve = itemView.statusSve
 
         val deleteSve = itemView.deletePrikSve
         val editSve = itemView.editPrikSve
@@ -32,11 +39,29 @@ class PrikazSveAdapter(context: Context, val rezerv: ArrayList<Rezervacije>): Re
         return rezerv.size
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: PrikazSveAdapter.ViewHolder, position: Int) {
         val rez : Rezervacije = rezerv[position]
+        var status = provjeraStatusa(rez.datumDOL, rez.datumODL)
         holder.sveNaziv.text = rez.imeRez
         holder.sveDatum.text = "${rez.datumDOL} - ${rez.datumODL}"
         holder.sveApp.text = rez.rezAppNaziv
+        if (status == 0){
+            holder.statusSve.text = "Rezervirano"
+            holder.statusSve.setTextColor(Color.GREEN)
+        }
+        if (status == 1){
+            holder.statusSve.text = "Rezervacija u tijeku"
+            holder.statusSve.setTextColor(Color.YELLOW)
+        }
+        if (status == 2){
+            holder.statusSve.text = "Prosla rezervacija"
+            holder.statusSve.setTextColor(Color.RED)
+        }
+        if (status == 15){
+            holder.statusSve.text = "GRESKA"
+            holder.statusSve.setTextColor(Color.CYAN)
+        }
 
         holder.deleteSve.setOnClickListener(){
             val rezerIme = rez.imeRez
@@ -59,6 +84,23 @@ class PrikazSveAdapter(context: Context, val rezerv: ArrayList<Rezervacije>): Re
                 .setIcon(R.drawable.ic_warning_black_24dp)
                 .show()
         }
+    }
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun provjeraStatusa(arrival: String, leave: String): Int{
+        val cal = LocalDate.now()
+        val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
+        val formatted = cal.format(formatter)
+        val todayDate = formatted.toString()
+        if (todayDate.compareTo(arrival)<0 && todayDate.compareTo(leave)<0){
+            return 0
+        }
+        else if (todayDate.compareTo(arrival)>0 && leave.compareTo(todayDate)>0){
+            return 1
+        }
+        else if (leave.compareTo(todayDate)<0){
+            return 2
+        }
+        else return 15
     }
 
 }
