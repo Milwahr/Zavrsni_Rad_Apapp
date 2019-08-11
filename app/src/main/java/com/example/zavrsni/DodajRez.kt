@@ -2,6 +2,7 @@ package com.example.zavrsni
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -28,37 +29,39 @@ class DodajRez : AppCompatActivity() {
         }
 
         spremiRez.setOnClickListener(){
-            if(txtnovaRez.text.isEmpty()){
-                Toast.makeText(this, "Unesite naziv rezervacije", Toast.LENGTH_SHORT).show()
-                txtnovaRez.requestFocus()
-            }
-            else if(txtNoviDatumOdl.text.isEmpty()){
-                Toast.makeText(this, "Unesite datum odlaska", Toast.LENGTH_SHORT).show()
-                txtNoviDatumOdl.requestFocus()
-            }
-            else if(txtnovidatumdol.text.isEmpty()){
-                Toast.makeText(this, "Unesite datum dolaska", Toast.LENGTH_SHORT).show()
-                txtnovidatumdol.requestFocus()
-            }
-            else{
-                val rezerv = Rezervacije()
-                rezerv.imeRez = txtnovaRez.text.toString()
-                rezerv.datumDOL = txtnovidatumdol.text.toString()
-                rezerv.datumODL = txtNoviDatumOdl.text.toString()
-                rezerv.rezAppNaziv = rezName
+            if(txtnovidatumdol.text.toString().compareTo(txtNoviDatumOdl.text.toString())<0) {
+                if (txtnovaRez.text.isEmpty()) {
+                    Toast.makeText(this, "Unesite naziv rezervacije", Toast.LENGTH_SHORT).show()
+                    txtnovaRez.requestFocus()
+                } else if (txtNoviDatumOdl.text.isEmpty()) {
+                    Toast.makeText(this, "Unesite datum odlaska", Toast.LENGTH_SHORT).show()
+                    txtNoviDatumOdl.requestFocus()
+                } else if (txtnovidatumdol.text.isEmpty()) {
+                    Toast.makeText(this, "Unesite datum dolaska", Toast.LENGTH_SHORT).show()
+                    txtnovidatumdol.requestFocus()
+                } else {
+                    val rezerv = Rezervacije()
+                    rezerv.imeRez = txtnovaRez.text.toString()
+                    rezerv.datumDOL = txtnovidatumdol.text.toString()
+                    rezerv.datumODL = txtNoviDatumOdl.text.toString()
+                    rezerv.rezAppNaziv = rezName
 
-                MainActivity.dbHandler.addRez(this, rezerv)
+                    MainActivity.dbHandler.addRez(this, rezerv)
 
-                val builder = AlertDialog.Builder(this)
-                builder.setTitle("Obavijest!")
-                builder.setMessage("Uspjesno dodana nova Rezervacija!")
-                builder.setIcon(R.drawable.ic_check_black_24dp)
-                builder.setPositiveButton("Ok"){dialog, which ->}
-                val dialog: AlertDialog = builder.create()
-                dialog.show()
+                    val builder = AlertDialog.Builder(this)
+                    builder.setTitle("Obavijest!")
+                    builder.setMessage("Uspjesno dodana nova Rezervacija!")
+                    builder.setIcon(R.drawable.ic_check_black_24dp)
+                    builder.setPositiveButton("Ok") { dialog, which -> }
+                    val dialog: AlertDialog = builder.create()
+                    dialog.show()
 
-                clearEdits()
-                txtnovaRez.requestFocus()
+                    clearEdits()
+                    txtnovaRez.requestFocus()
+                }
+            }else{
+                upozorenje.setText("Datum odlaska mora biti nakon datum dolaska")
+                upozorenje.setTextColor(Color.RED)
             }
         }
 
