@@ -51,7 +51,7 @@ class PrikazSveAdapter(context: Context, val rezerv: ArrayList<Rezervacije>): Re
         }
         if (status == 1){
             holder.statusSve.text = "Rezervacija u tijeku"
-            holder.statusSve.setTextColor(Color.YELLOW)
+            holder.statusSve.setTextColor(Color.parseColor("#DF7401"))
         }
         if (status == 2){
             holder.statusSve.text = "Prosla rezervacija"
@@ -93,7 +93,7 @@ class PrikazSveAdapter(context: Context, val rezerv: ArrayList<Rezervacije>): Re
         if (todayDate.compareTo(arrival)<0 && todayDate.compareTo(leave)<0){
             return 0
         }
-        else if (todayDate.compareTo(arrival)>0 && leave.compareTo(todayDate)>0){
+        else if (todayDate.compareTo(arrival)>=0 && leave.compareTo(todayDate)>0){
             return 1
         }
         else if (leave.compareTo(todayDate)<0){

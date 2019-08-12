@@ -18,7 +18,7 @@ class EditRez : AppCompatActivity() {
 
         intent = intent
 
-        setTitle("Uredi Rezervaciju")
+        setTitle("Apartment Reservation Application")
 
         editovanNaziv.setText(intent.getStringExtra("prenosIme"))
         editovanDatumDol.setText(intent.getStringExtra("prenosDOL"))

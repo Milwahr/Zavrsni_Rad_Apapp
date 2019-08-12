@@ -225,13 +225,16 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
         return result
     }
 
-    fun editObjekt(id: String, objektIme: String): Boolean{
+    fun editObjekt(id: String, objektIme: String, staroIme: String): Boolean{
         var result = false
         val db = this.writableDatabase
         val contentValues = ContentValues()
+        val contentValues2 = ContentValues()
         contentValues.put(COLUMN_APP_NAME, objektIme)
+        contentValues2.put(COLUMN_REZ_APPNAME, objektIme)
         try{
             db.update(TABLE_APP_NAME, contentValues, "$COLUMN_APP_ID = ?", arrayOf(id))
+            db.update(TABLE_REZ_NAME, contentValues2, "$COLUMN_REZ_APPNAME = ?", arrayOf(staroIme))
             result = true
         }catch (e: Exception){
             Log.e(ContentValues.TAG, "Greska u editiranju")

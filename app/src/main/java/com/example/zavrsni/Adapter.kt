@@ -62,13 +62,13 @@ class ObjAdapter(context: Context, val iznajm: ArrayList<Iznajmljivacki>): Recyc
             val stariNaziv : TextView = view.findViewById(R.id.stariNaziv)
 
             stariNaziv.text = iznajmljiv.nazivApp
-
+            val staroIme = stariNaziv.text.toString()
             val builder = AlertDialog.Builder(context)
                 .setTitle("Uredi objekt")
                 .setView(view)
                 .setPositiveButton("Uredi", DialogInterface.OnClickListener{dialog, which ->
                     val isUpdate = MainActivity.dbHandler.editObjekt(iznajmljiv.idApp.toString(),
-                        view.noviNaziv.text.toString())
+                        view.noviNaziv.text.toString(), staroIme)
                     if(isUpdate == true){
                         iznajm[position].nazivApp = view.noviNaziv.text.toString()
                         notifyDataSetChanged()

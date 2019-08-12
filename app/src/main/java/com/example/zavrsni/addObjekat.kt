@@ -12,6 +12,8 @@ class addObjekat : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_objekat)
 
+        setTitle("Apartment Reservation Application")
+
         btn_spremi.setOnClickListener(){
             if(edittxt_Naziv.text.isEmpty()){
                 Toast.makeText(this, "Unesite ime objekta", Toast.LENGTH_SHORT).show()

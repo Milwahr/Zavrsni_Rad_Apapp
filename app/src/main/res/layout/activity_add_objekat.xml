@@ -22,17 +22,17 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="326dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="377dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/open_sans"
-        android:textStyle="bold"
+        android:text="Upisite naziv novog objekta kojeg zelite dodati"
         android:textColor="@color/design_default_color_primary"
-        android:text="Upisite ime novog objekta kojeg zelite dodati"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.884"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

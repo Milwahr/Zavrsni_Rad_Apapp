@@ -25,9 +25,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/roboto_medium_italic"
+        android:textColor="#40C4FF"
         android:text="TextView"
         android:textSize="18dp"
-        android:textColor="#40C4FF"
         android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -40,7 +40,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toEndOf="@+id/txtNaziv"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_ikona_edit" />
+        app:srcCompat="@drawable/ic_mode_edit_black_24dp" />
 
     <ImageButton
         android:id="@+id/btn_select"
@@ -62,9 +62,10 @@
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
+        android:background="#00FFFFFF"
         app:layout_constraintStart_toEndOf="@+id/btn_edit"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_ikona_delete" />
+        app:srcCompat="@drawable/ic_delete_black_24dp" />
 
     <ImageView
         android:id="@+id/imageView"
