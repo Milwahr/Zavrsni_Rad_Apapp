@@ -27,7 +27,6 @@ class PrikazSveAdapter(context: Context, val rezerv: ArrayList<Rezervacije>): Re
         val statusSve = itemView.statusSve
 
         val deleteSve = itemView.deletePrikSve
-        val editSve = itemView.editPrikSve
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PrikazSveAdapter.ViewHolder {

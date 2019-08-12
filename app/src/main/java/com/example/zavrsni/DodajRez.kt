@@ -118,7 +118,7 @@ class DodajRez : AppCompatActivity() {
             return mjesecEdit
         }else{
             Log.e("MJ", "$mjesec")
-            return mjesec.toString()
+            return (mjesec+1).toString()
         }
     }
 }

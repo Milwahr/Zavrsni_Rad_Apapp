@@ -143,7 +143,7 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
             cursor.moveToFirst()
             while (!cursor.isAfterLast){
                 val rezervac = Rezervacije()
-                var datumPih = cursor.getString(cursor.getColumnIndex(COLUMN_DATE_AR)).toString()
+                var datumPih = cursor.getString(cursor.getColumnIndex(COLUMN_DATE_LE)).toString()
                 if(MainActivity.Usporedba.usporedba(datumPih)==1){
                 rezervac.idRez = cursor.getInt(cursor.getColumnIndex(COLUMN_REZ_ID))
                 rezervac.imeRez = cursor.getString(cursor.getColumnIndex(COLUMN_REZ_NAME))

@@ -105,7 +105,7 @@ class EditRez : AppCompatActivity() {
             mjesecEdit = "0$mjesecEdit"
             return mjesecEdit
         }else{
-            return mjesec.toString()
+            return (mjesec+1).toString()
         }
     }
 }

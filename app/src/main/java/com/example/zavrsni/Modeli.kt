@@ -18,6 +18,3 @@ class Rezervacije {
     var datumDOL: String = ""
     var datumODL: String = ""
 }
-object provStatus{
-
-}
