@@ -38,7 +38,8 @@
 
     <Button
         android:id="@+id/btn_spremi"
-        style="@style/Widget.AppCompat.Button"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:textColor="@color/design_default_color_primary_dark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -52,6 +53,8 @@
 
     <Button
         android:id="@+id/btn_odustani"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:textColor="@color/design_default_color_primary_dark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

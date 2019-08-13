@@ -18,6 +18,8 @@ class DodajRez : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dodaj_rez)
 
+        setTitle("Apartment Reservation Application")
+
         val rezName = intent.getStringExtra("rezName")
         objektIme.text = rezName
 

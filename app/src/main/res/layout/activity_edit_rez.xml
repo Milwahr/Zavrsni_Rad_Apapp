@@ -108,6 +108,8 @@
 
     <Button
         android:id="@+id/editSpremuj"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:textColor="@color/design_default_color_primary_dark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="90dp"
@@ -120,6 +122,8 @@
 
     <Button
         android:id="@+id/editOdustanuj"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:textColor="@color/design_default_color_primary_dark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
