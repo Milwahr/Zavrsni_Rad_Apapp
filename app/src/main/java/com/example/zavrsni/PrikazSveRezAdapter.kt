@@ -54,11 +54,11 @@ class PrikazSveAdapter(context: Context, val rezerv: ArrayList<Rezervacije>): Re
             holder.statusSve.setTextColor(Color.parseColor("#DF7401"))
         }
         if (status == 2){
-            holder.statusSve.text = "Prosla rezervacija"
+            holder.statusSve.text = "Prošla rezervacija"
             holder.statusSve.setTextColor(Color.RED)
         }
         if (status == 15){
-            holder.statusSve.text = "GRESKA"
+            holder.statusSve.text = "GREŠKA"
             holder.statusSve.setTextColor(Color.CYAN)
         }
 
@@ -68,15 +68,15 @@ class PrikazSveAdapter(context: Context, val rezerv: ArrayList<Rezervacije>): Re
 
             val alertDialog = AlertDialog.Builder(context)
                 .setTitle("Upozorenje!")
-                .setMessage("Jeste li sigurni da zelite obrisati $rezerIme?")
+                .setMessage("Jeste li sigurni da želite obrisati $rezerIme?")
                 .setPositiveButton("Da", DialogInterface.OnClickListener{ dialog, which ->
                     if(MainActivity.dbHandler.deleteRez(rez.idRez)){
                         rezerv.removeAt(position)
                         notifyItemRemoved(position)
                         notifyItemRangeChanged(position, rezerv.size)
-                        Toast.makeText(context, "Obrisana je rezervacija $rezerIme sa objekta $rezevApp", Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, "Obrisana rezervacija $rezerIme s objekta $rezevApp", Toast.LENGTH_LONG).show()
                     }else{
-                        Toast.makeText(context, "Greska brisanja rezervacije $rezerIme sa objekta $rezevApp", Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, "Greška brisanja rezervacije $rezerIme s objekta $rezevApp", Toast.LENGTH_LONG).show()
                     }
                 })
                 .setNegativeButton("Ne", DialogInterface.OnClickListener{dialog, which ->})

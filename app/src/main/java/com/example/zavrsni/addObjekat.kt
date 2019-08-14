@@ -12,7 +12,7 @@ class addObjekat : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_objekat)
 
-        setTitle("Apartment Reservation Application")
+        setTitle("Apartments Reservations Application")
 
         btn_spremi.setOnClickListener(){
             if(edittxt_Naziv.text.isEmpty()){
@@ -26,7 +26,7 @@ class addObjekat : AppCompatActivity() {
 
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle("Obavijest!")
-                builder.setMessage("Uspjesno dodan objekt!")
+                builder.setMessage("Uspješno dodan objekt!")
                 builder.setIcon(R.drawable.ic_check_black_24dp)
                 builder.setPositiveButton("Ok"){dialog, which ->}
                 val dialog: AlertDialog = builder.create()

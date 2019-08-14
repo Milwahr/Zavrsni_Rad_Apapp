@@ -17,7 +17,6 @@ import java.util.*
 class PrikazRez : AppCompatActivity() {
 
     companion object{
-        var rezID = 0
         var rezIme = ""
     }
     private lateinit var recyclerView: RecyclerView

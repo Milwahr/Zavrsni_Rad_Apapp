@@ -41,7 +41,7 @@ class ObjAdapter(context: Context, val iznajm: ArrayList<Iznajmljivacki>): Recyc
 
             var alertDialog = AlertDialog.Builder(context)
                 .setTitle("Upozorenje!")
-                .setMessage("Da li ste sigurno da zelite obrisati $objektIme")
+                .setMessage("Da li ste sigurni da želite obrisati $objektIme")
                 .setPositiveButton("Da", DialogInterface.OnClickListener{dialog, which ->
                     if(MainActivity.dbHandler.deleteObjekt(iznajmljiv.idApp, iznajmljiv.nazivApp)){
                         iznajm.removeAt(position)
@@ -49,7 +49,7 @@ class ObjAdapter(context: Context, val iznajm: ArrayList<Iznajmljivacki>): Recyc
                         notifyItemRangeChanged(position, iznajm.size)
                         Toast.makeText(context, "Obrisan je objekt: $objektIme", Toast.LENGTH_SHORT).show()
                     }else
-                        Toast.makeText(context, "Greska u brisanju objekta $objektIme", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Greška u brisanju objekta $objektIme", Toast.LENGTH_SHORT).show()
                 })
                 .setNegativeButton("Ne", DialogInterface.OnClickListener{dialog, which ->})
                 .setIcon(R.drawable.ic_warning_black_24dp)
@@ -72,9 +72,9 @@ class ObjAdapter(context: Context, val iznajm: ArrayList<Iznajmljivacki>): Recyc
                     if(isUpdate == true){
                         iznajm[position].nazivApp = view.noviNaziv.text.toString()
                         notifyDataSetChanged()
-                        Toast.makeText(context, "Uspjesno uredjeno", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Uspješno uređeno", Toast.LENGTH_SHORT).show()
                     }else
-                        Toast.makeText(context, "Greska u uredjivanju", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Greška u uređivanju", Toast.LENGTH_SHORT).show()
                 })
                 .setNegativeButton("Odustani", DialogInterface.OnClickListener{dialog, which ->})
             val alert = builder.create()

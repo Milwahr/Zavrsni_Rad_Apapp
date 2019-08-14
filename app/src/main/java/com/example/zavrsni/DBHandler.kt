@@ -64,7 +64,7 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
                 objektovi.add(objekat)
                 cursor.moveToNext()
             }
-            Toast.makeText(context, "Pronadeno ${cursor.count} objekata", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Pronađeno ${cursor.count} objekata", Toast.LENGTH_SHORT).show()
         }
         cursor.close()
         db.close()
@@ -79,7 +79,7 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
         val rezerv = ArrayList<Rezervacije>()
 
         if(cursor.count == 0)
-            Toast.makeText(context, "Nema rezervcija", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Nema rezervacija", Toast.LENGTH_SHORT).show()
         else{
             cursor.moveToFirst()
             while(!cursor.isAfterLast){
@@ -92,7 +92,7 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
                 rezerv.add(rezervac)
                 cursor.moveToNext()
             }
-            Toast.makeText(context, "Pronadeno ${cursor.count} rezervacija", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Pronađeno ${cursor.count} rezervacija", Toast.LENGTH_SHORT).show()
         }
         cursor.close()
         db.close()
@@ -120,7 +120,7 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
                 rezerv.add(rezervac)
                 cursor.moveToNext()
             }
-            Toast.makeText(context, "Pronadjeno ${cursor.count} rezervacija", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Pronađeno ${cursor.count} rezervacija", Toast.LENGTH_SHORT).show()
         }
         cursor.close()
         db.close()
@@ -157,7 +157,7 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
                 }
                 cursor.moveToNext()
             }
-            Toast.makeText(context, "Pronadjeno $brojac rezervacija", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Pronađeno $brojac rezervacija", Toast.LENGTH_SHORT).show()
         }
         cursor.close()
         db.close()
@@ -171,9 +171,9 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
         val db = this.writableDatabase
         try{
             db.insert(TABLE_APP_NAME, null, values)
-            Toast.makeText(context, "Uspjesno dodan ${objekat.nazivApp}!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Uspješno dodan ${objekat.nazivApp}!", Toast.LENGTH_SHORT).show()
         }catch(e: Exception){
-            Toast.makeText(context, "Doslo do greske, jej!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Došlo do greške, jej!", Toast.LENGTH_SHORT).show()
         }
         db.close()
     }
@@ -190,7 +190,7 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
             db.insert(TABLE_REZ_NAME, null, values)
             Toast.makeText(context, "Uspjesno dodana rezervacija ${rezerv.imeRez}", Toast.LENGTH_SHORT).show()
         }catch (e: Exception){
-            Toast.makeText(context, "Greska u dodavanju rezervacije ${rezerv.imeRez}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Greška u dodavanju rezervacije ${rezerv.imeRez}", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -204,7 +204,7 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
             db.delete(TABLE_REZ_NAME, "$COLUMN_REZ_APPNAME = ?", arrayOf(appName))
             result = true
         }catch(e: Exception){
-            Log.e(ContentValues.TAG, "Greska u brisanju")
+            Log.e(ContentValues.TAG, "Greška u brisanju")
         }
         db.close()
         return result
@@ -219,7 +219,7 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
             db.execSQL(qry)
             result = true
         }catch (e: Exception){
-            Log.e(ContentValues.TAG, "Greska u brisanju")
+            Log.e(ContentValues.TAG, "Greška u brisanju")
         }
         db.close()
         return result
@@ -237,7 +237,7 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
             db.update(TABLE_REZ_NAME, contentValues2, "$COLUMN_REZ_APPNAME = ?", arrayOf(staroIme))
             result = true
         }catch (e: Exception){
-            Log.e(ContentValues.TAG, "Greska u editiranju")
+            Log.e(ContentValues.TAG, "Greška u editiranju")
             result = false
         }
         return result
@@ -255,7 +255,7 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
             db.update(TABLE_REZ_NAME, contentValues, "$COLUMN_REZ_ID = ?", arrayOf(id))
             result = true
         }catch (e: Exception){
-            Log.e(ContentValues.TAG, "Greska u editiranju")
+            Log.e(ContentValues.TAG, "Greška u editiranju")
             result = false
         }
         return result

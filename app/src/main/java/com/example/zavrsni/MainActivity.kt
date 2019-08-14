@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setTitle("Iznajmljivacki objekti")
+        setTitle("Iznajmljivački objekti")
 
         dbHandler = DBHandler(this, null, null, 1)
         prikazObjekti()
@@ -64,13 +64,13 @@ class MainActivity : AppCompatActivity() {
         val id = item.itemId
 
         if(id == R.id.action_one){
-            val txt1 = "Dobro dosli na Appartments Reservations Application"
-            val txt2 = "Ova aplikacija ce Vam sluziti za organiziranje vasih rezervacija"
+            val txt1 = "Dobro došli na Appartments Reservations Application"
+            val txt2 = "Ova aplikacija služi za organiziranje vaših rezervacija"
             val txt3 = "- Stisnite dolje na plus znak za dodavanje apartmana"
-            val txt6 = "- Zuta tipka prikazuje sve rezervacije"
-            val txt4 = "- Nakon toga ce vam se prikazati vasi objekti, te stisnite na zelenu strelicu da ih odaberete"
-            val txt5 = "- U odabiru ce Vam se pokazati apartman te mozete dodati rezervacije za taj apartman"
-            val txt7 = "Individualna lista pokazuje samo buduce rezervacije, dok u listi sve rezervacije pokazuje sve rezervacije"
+            val txt6 = "- Žuta tipka prikazuje sve rezervacije"
+            val txt4 = "- Nakon toga će se prikazati vaši objekti, te stisnite na zelenu strelicu da ih odaberete"
+            val txt5 = "- U odabiru će Vam se prikazati apartman te možete dodati rezervacije za taj apartman"
+            val txt7 = "Individualna lista prikazuje samo buduće rezervacije, dok u listi 'Sve Rezervacije' prikazuje sve rezervacije"
 
             val inflater = LayoutInflater.from(this)
             val view = inflater.inflate(R.layout.editrez, null)
@@ -83,38 +83,14 @@ class MainActivity : AppCompatActivity() {
             napomene.setText(txt7)
 
             val builder = AlertDialog.Builder(this)
-                .setTitle("Pomoc")
+                .setTitle("Pomoć")
                 .setView(view)
                 .setPositiveButton("Uredu", DialogInterface.OnClickListener{dialog, which ->})
                 .setIcon(R.drawable.ic_help_outline_blue_24dp)
             val alert = builder.create()
             alert.show()
 
-            /*
-            val inflater = LayoutInflater.from(context)
-            val view = inflater.inflate(R.layout.editapp, null)
-            val stariNaziv : TextView = view.findViewById(R.id.stariNaziv)
-
-            stariNaziv.text = iznajmljiv.nazivApp
-            val staroIme = stariNaziv.text.toString()
-            val builder = AlertDialog.Builder(context)
-                .setTitle("Uredi objekt")
-                .setView(view)
-                .setPositiveButton("Uredi", DialogInterface.OnClickListener{dialog, which ->
-                    val isUpdate = MainActivity.dbHandler.editObjekt(iznajmljiv.idApp.toString(),
-                        view.noviNaziv.text.toString(), staroIme)
-                    if(isUpdate == true){
-                        iznajm[position].nazivApp = view.noviNaziv.text.toString()
-                        notifyDataSetChanged()
-                        Toast.makeText(context, "Uspjesno uredjeno", Toast.LENGTH_SHORT).show()
-                    }else
-                        Toast.makeText(context, "Greska u uredjivanju", Toast.LENGTH_SHORT).show()
-                })
-                .setNegativeButton("Odustani", DialogInterface.OnClickListener{dialog, which ->})
-            val alert = builder.create()
-            alert.show()
-             */
-            Toast.makeText(this, "Pomoc stize", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Pomoć stiže", Toast.LENGTH_LONG).show()
             return true
         }
         return super.onOptionsItemSelected(item)

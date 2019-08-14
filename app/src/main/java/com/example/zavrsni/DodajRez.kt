@@ -18,7 +18,7 @@ class DodajRez : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dodaj_rez)
 
-        setTitle("Apartment Reservation Application")
+        setTitle("Apartments Reservations Application")
 
         val rezName = intent.getStringExtra("rezName")
         objektIme.text = rezName
@@ -52,7 +52,7 @@ class DodajRez : AppCompatActivity() {
 
                     val builder = AlertDialog.Builder(this)
                     builder.setTitle("Obavijest!")
-                    builder.setMessage("Uspjesno dodana nova Rezervacija!")
+                    builder.setMessage("Uspješno dodana nova rezervacija!")
                     builder.setIcon(R.drawable.ic_check_black_24dp)
                     builder.setPositiveButton("Ok") { dialog, which -> }
                     val dialog: AlertDialog = builder.create()
@@ -62,7 +62,7 @@ class DodajRez : AppCompatActivity() {
                     txtnovaRez.requestFocus()
                 }
             }else{
-                upozorenje.setText("Datum odlaska mora biti nakon datum dolaska")
+                upozorenje.setText("Datum odlaska mora biti nakon datuma dolaska")
                 upozorenje.setTextColor(Color.RED)
             }
         }

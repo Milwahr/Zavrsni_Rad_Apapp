@@ -9,37 +9,37 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/open_sans"
-        android:textStyle="bold"
-        android:textColor="@color/design_default_color_primary"
         android:text="Naziv objekta:"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/design_default_color_primary"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/guideline10"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtNaziv"
         android:layout_width="170dp"
         android:layout_height="24dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/roboto_medium_italic"
         android:text="TextView"
         android:textColor="#40C4FF"
         android:textSize="18dp"
         android:textStyle="bold|italic"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline10"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ImageButton
         android:id="@+id/btn_edit"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="52dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
         android:background="@android:color/transparent"
-        app:layout_constraintStart_toEndOf="@+id/txtNaziv"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_mode_edit_black_24dp" />
 
@@ -48,13 +48,13 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
         android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_delete"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.836"
         app:layout_constraintStart_toEndOf="@+id/btn_delete"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_delete"
         app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
 
     <ImageButton
@@ -62,10 +62,10 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
         android:background="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_edit"
         app:layout_constraintStart_toEndOf="@+id/btn_edit"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_edit"
         app:srcCompat="@drawable/ic_delete_black_24dp" />
 
     <ImageView
@@ -81,4 +81,18 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_select"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/linija" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="228dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

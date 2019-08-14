@@ -37,7 +37,7 @@ class EditRez : AppCompatActivity() {
                 val builder = AlertDialog.Builder(this)
                     .setTitle("Obavijest")
                     .setIcon(R.drawable.ic_warning_black_24dp)
-                    .setMessage("Da li ste sigurni da zelite urediti podatke?")
+                    .setMessage("Da li ste sigurni da želite urediti podatke?")
                     .setPositiveButton("Da", DialogInterface.OnClickListener { dialog, which ->
                         val isUpdate = MainActivity.dbHandler.editRez(
                             prenosID, editovanNaziv.text.toString(), editovanDatumDol.text.toString(),
@@ -46,12 +46,12 @@ class EditRez : AppCompatActivity() {
                         if (isUpdate == true) {
                             Toast.makeText(
                                 this,
-                                "Uspjesno uredjena rezervacija ${editovanNaziv.text}",
+                                "Ušpjesno uređena rezervacija ${editovanNaziv.text}",
                                 Toast.LENGTH_SHORT
                             ).show()
                             finish()
                         } else {
-                            Toast.makeText(this, "Greska u uredjivanju", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "Greška u uređivanju", Toast.LENGTH_SHORT).show()
                         }
                     })
                     .setNegativeButton("Ne", null)
@@ -59,7 +59,7 @@ class EditRez : AppCompatActivity() {
                 val alert = builder.create()
                 alert.show()
             }else{
-                upozorenjeEdit.setText("Datum odlaska mora biti nakon datum dolaska")
+                upozorenjeEdit.setText("Datum odlaska mora biti nakon datuma dolaska")
                 upozorenjeEdit.setTextColor(Color.RED)
             }
         }

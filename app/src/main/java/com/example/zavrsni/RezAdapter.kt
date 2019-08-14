@@ -54,15 +54,15 @@ class RezAdapter(context: Context, val rezerv: ArrayList<Rezervacije>): Recycler
 
             var alertDialog = AlertDialog.Builder(context)
                 .setTitle("Upozorenje!")
-                .setMessage("Jeste li sigurni da biste obrisali rezervaciju $rezervacijaIme?")
+                .setMessage("Da li ste sigurni da želite obrisati rezervaciju $rezervacijaIme?")
                 .setPositiveButton("Da", DialogInterface.OnClickListener { dialog, which ->
                     if (MainActivity.dbHandler.deleteRez(rezervator.idRez)) {
                         rezerv.removeAt(position)
                         notifyItemRemoved(position)
                         notifyItemRangeChanged(position, rezerv.size)
-                        Toast.makeText(context, "Obrisana je rezervacija $rezervacijaIme", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Obrisana rezervacija $rezervacijaIme", Toast.LENGTH_SHORT).show()
                     } else
-                        Toast.makeText(context, "Greska brisanja $rezervacijaIme", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Greška brisanja $rezervacijaIme", Toast.LENGTH_SHORT).show()
                 })
                 .setNegativeButton("Ne", DialogInterface.OnClickListener { dialog, which -> })
                 .setIcon(R.drawable.ic_warning_black_24dp)
