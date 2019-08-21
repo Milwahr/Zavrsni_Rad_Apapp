@@ -23,6 +23,9 @@ class EditRez : AppCompatActivity() {
         editovanNaziv.setText(intent.getStringExtra("prenosIme"))
         editovanDatumDol.setText(intent.getStringExtra("prenosDOL"))
         editovanDatumOdl.setText(intent.getStringExtra("prenosODL"))
+        editovanIznos.setText(intent.getStringExtra("prenosIznos"))
+        editovanOdrasli.setText(intent.getStringExtra("prenosOdr"))
+        editovanDjeca.setText(intent.getStringExtra("prenosDj"))
         val prenosID = intent.getStringExtra("prenosID")
 
         editovanDatumDol.setOnClickListener(){
@@ -41,7 +44,8 @@ class EditRez : AppCompatActivity() {
                     .setPositiveButton("Da", DialogInterface.OnClickListener { dialog, which ->
                         val isUpdate = MainActivity.dbHandler.editRez(
                             prenosID, editovanNaziv.text.toString(), editovanDatumDol.text.toString(),
-                            editovanDatumOdl.text.toString()
+                            editovanDatumOdl.text.toString(), editovanOdrasli.text.toString().toInt(),
+                            editovanDjeca.text.toString().toInt(), editovanIznos.text.toString()
                         )
                         if (isUpdate == true) {
                             Toast.makeText(

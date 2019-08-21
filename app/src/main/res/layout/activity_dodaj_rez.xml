@@ -155,8 +155,8 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="172dp"
         android:text="Spremi"
         android:textColor="@color/design_default_color_primary_dark"
         app:layout_constraintStart_toStartOf="parent"
@@ -178,14 +178,14 @@
 
     <TextView
         android:id="@+id/upozorenje"
-        android:layout_width="wrap_content"
+        android:layout_width="19dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="136dp"
         android:layout_marginEnd="123dp"
         android:text="  "
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.095"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNoviDatumOdl" />
 
@@ -209,4 +209,78 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_end="268dp" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="8dp"
+        android:text="Iznos:"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/barrier"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <EditText
+        android:id="@+id/txtNoviIznos"
+        android:layout_width="124dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:hint="Iznos"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/textView24"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/textView24" />
+
+    <ToggleButton
+        android:id="@+id/noviValuta"
+        android:layout_width="46dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="8dp"
+        android:text="ToggleButton"
+        android:textOff="kn"
+        android:textOn="Euro"
+        app:layout_constraintBottom_toBottomOf="@+id/txtNoviIznos"
+        app:layout_constraintStart_toEndOf="@+id/txtNoviIznos"
+        app:layout_constraintTop_toTopOf="@+id/txtNoviIznos" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="8dp"
+        android:text="Osoba:"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/barrier"
+        app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+    <EditText
+        android:id="@+id/txtNoviOdrasli"
+        android:layout_width="88dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:hint="Odraslih"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/textView25"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/textView25" />
+
+    <EditText
+        android:id="@+id/txtNoviDjeca"
+        android:layout_width="88dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:hint="Djeca"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/txtNoviOdrasli"
+        app:layout_constraintStart_toEndOf="@+id/txtNoviOdrasli"
+        app:layout_constraintTop_toTopOf="@+id/txtNoviOdrasli" />
 </androidx.constraintlayout.widget.ConstraintLayout>

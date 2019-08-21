@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.os.Build
+import android.security.ConfirmationAlreadyPresentingException
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -24,6 +25,7 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
         val TABLE_APP_NAME = "Objekti"
         val COLUMN_APP_ID = "appid"
         val COLUMN_APP_NAME = "appime"
+        val COLUMN_APP_CAP = "kapacitet"
 
         val TABLE_REZ_NAME = "Rezervacije"
         val COLUMN_REZ_ID = "rezid"
@@ -31,14 +33,17 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
         val COLUMN_REZ_APPNAME = "rezappime"
         val COLUMN_DATE_AR = "datumdol"
         val COLUMN_DATE_LE = "datumodl"
+        val COLUMN_REZ_PLAC = "iznos"
+        val COLUMN_REZ_ODR = "odrasli"
+        val COLUMN_REZ_DJ = "djeca"
     }
 
     override fun onCreate(p0: SQLiteDatabase?) {
         val CREATE_TABLE_APP = ("CREATE TABLE $TABLE_APP_NAME ($COLUMN_APP_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "$COLUMN_APP_NAME TEXT)")
+                "$COLUMN_APP_NAME TEXT, $COLUMN_APP_CAP INTEGER)")
         val CREATE_REZ_APP = ("CREATE TABLE $TABLE_REZ_NAME ($COLUMN_REZ_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "$COLUMN_REZ_NAME TEXT, $COLUMN_REZ_APPNAME TEXT, $COLUMN_DATE_AR TEXT" +
-                ", $COLUMN_DATE_LE TEXT)")
+                ", $COLUMN_DATE_LE TEXT, $COLUMN_REZ_PLAC TEXT, $COLUMN_REZ_ODR INTEGER, $COLUMN_REZ_DJ INTEGER)")
         p0?.execSQL(CREATE_TABLE_APP)
         p0?.execSQL(CREATE_REZ_APP)
     }
@@ -61,6 +66,7 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
                 val objekat = Iznajmljivacki()
                 objekat.idApp = cursor.getInt(cursor.getColumnIndex(COLUMN_APP_ID))
                 objekat.nazivApp = cursor.getString(cursor.getColumnIndex(COLUMN_APP_NAME))
+                objekat.kapacitet = cursor.getInt(cursor.getColumnIndex(COLUMN_APP_CAP))
                 objektovi.add(objekat)
                 cursor.moveToNext()
             }
@@ -89,6 +95,9 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
                 rezervac.rezAppNaziv = cursor.getString(cursor.getColumnIndex(COLUMN_REZ_APPNAME))
                 rezervac.datumDOL = cursor.getString(cursor.getColumnIndex(COLUMN_DATE_AR))
                 rezervac.datumODL = cursor.getString(cursor.getColumnIndex(COLUMN_DATE_LE))
+                rezervac.placanje = cursor.getString(cursor.getColumnIndex(COLUMN_REZ_PLAC))
+                rezervac.odrasli = cursor.getInt(cursor.getColumnIndex(COLUMN_REZ_ODR))
+                rezervac.djeca = cursor.getInt(cursor.getColumnIndex(COLUMN_REZ_DJ))
                 rezerv.add(rezervac)
                 cursor.moveToNext()
             }
@@ -150,6 +159,9 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
                 rezervac.rezAppNaziv = cursor.getString(cursor.getColumnIndex(COLUMN_REZ_APPNAME))
                 rezervac.datumDOL = cursor.getString(cursor.getColumnIndex(COLUMN_DATE_AR))
                 rezervac.datumODL = cursor.getString(cursor.getColumnIndex(COLUMN_DATE_LE))
+                rezervac.placanje = cursor.getString(cursor.getColumnIndex(COLUMN_REZ_PLAC))
+                rezervac.odrasli = cursor.getInt(cursor.getColumnIndex(COLUMN_REZ_ODR))
+                rezervac.djeca = cursor.getInt(cursor.getColumnIndex(COLUMN_REZ_DJ))
                 rezerv.add(rezervac)
                 brojac++
                 }else{
@@ -167,6 +179,7 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
     fun addObjekti(context: Context, objekat: Iznajmljivacki){
         val values = ContentValues()
         values.put(COLUMN_APP_NAME, objekat.nazivApp)
+        values.put(COLUMN_APP_CAP, objekat.kapacitet)
 
         val db = this.writableDatabase
         try{
@@ -184,6 +197,9 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
         values.put(COLUMN_REZ_APPNAME, rezerv.rezAppNaziv)
         values.put(COLUMN_DATE_AR, rezerv.datumDOL)
         values.put(COLUMN_DATE_LE, rezerv.datumODL)
+        values.put(COLUMN_REZ_PLAC, rezerv.placanje)
+        values.put(COLUMN_REZ_ODR, rezerv.odrasli)
+        values.put(COLUMN_REZ_DJ, rezerv.djeca)
 
         val db = this.writableDatabase
         try{
@@ -225,12 +241,13 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
         return result
     }
 
-    fun editObjekt(id: String, objektIme: String, staroIme: String): Boolean{
+    fun editObjekt(id: String, objektIme: String, staroIme: String, kapacitet: Int): Boolean{
         var result = false
         val db = this.writableDatabase
         val contentValues = ContentValues()
         val contentValues2 = ContentValues()
         contentValues.put(COLUMN_APP_NAME, objektIme)
+        contentValues.put(COLUMN_APP_CAP, kapacitet)
         contentValues2.put(COLUMN_REZ_APPNAME, objektIme)
         try{
             db.update(TABLE_APP_NAME, contentValues, "$COLUMN_APP_ID = ?", arrayOf(id))
@@ -243,13 +260,16 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
         return result
     }
 
-    fun editRez (id: String, rezIme: String, dateDOL: String, dateODL: String): Boolean{
+    fun editRez (id: String, rezIme: String, dateDOL: String, dateODL: String, odrasli: Int, djeca: Int, placanje: String): Boolean{
         var result: Boolean = false
         val db = this.writableDatabase
         val contentValues = ContentValues()
         contentValues.put(COLUMN_REZ_NAME, rezIme)
         contentValues.put(COLUMN_DATE_AR, dateDOL)
         contentValues.put(COLUMN_DATE_LE, dateODL)
+        contentValues.put(COLUMN_REZ_PLAC, placanje)
+        contentValues.put(COLUMN_REZ_ODR, odrasli)
+        contentValues.put(COLUMN_REZ_DJ, djeca)
 
         try{
             db.update(TABLE_REZ_NAME, contentValues, "$COLUMN_REZ_ID = ?", arrayOf(id))

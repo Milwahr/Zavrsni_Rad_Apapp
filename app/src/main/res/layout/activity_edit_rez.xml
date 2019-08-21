@@ -126,7 +126,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="90dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="176dp"
         android:layout_marginEnd="56dp"
         android:text="Spremi"
         android:textColor="@color/design_default_color_primary_dark"
@@ -150,7 +150,7 @@
 
     <TextView
         android:id="@+id/upozorenjeEdit"
-        android:layout_width="wrap_content"
+        android:layout_width="14dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
@@ -158,9 +158,10 @@
         android:text="  "
         app:layout_constraintBottom_toTopOf="@+id/editSpremuj"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.305"
+        app:layout_constraintHorizontal_bias="0.213"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editovanDatumOdl" />
+        app:layout_constraintTop_toBottomOf="@+id/editovanDatumOdl"
+        app:layout_constraintVertical_bias="0.958" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -168,4 +169,76 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="148dp" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="8dp"
+        android:text="Iznos:"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="8dp"
+        android:text="        Osoba \n(Odrasli + djeca)"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+    <EditText
+        android:id="@+id/editovanIznos"
+        android:layout_width="88dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/textView26"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/textView26" />
+
+    <ToggleButton
+        android:id="@+id/editovanValuta"
+        android:layout_width="51dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="2dp"
+        android:text="ToggleButton"
+        android:textOff="KN"
+        android:textOn="Euro"
+        app:layout_constraintBottom_toBottomOf="@+id/editovanIznos"
+        app:layout_constraintStart_toEndOf="@+id/editovanIznos"
+        app:layout_constraintTop_toTopOf="@+id/editovanIznos" />
+
+    <EditText
+        android:id="@+id/editovanOdrasli"
+        android:layout_width="88dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/textView27"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/textView27"
+        app:layout_constraintVertical_bias="0.625" />
+
+    <EditText
+        android:id="@+id/editovanDjeca"
+        android:layout_width="88dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/editovanOdrasli"
+        app:layout_constraintStart_toEndOf="@+id/editovanOdrasli"
+        app:layout_constraintTop_toTopOf="@+id/editovanOdrasli" />
 </androidx.constraintlayout.widget.ConstraintLayout>

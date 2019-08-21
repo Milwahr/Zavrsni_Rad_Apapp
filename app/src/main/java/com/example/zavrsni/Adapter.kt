@@ -7,6 +7,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +19,7 @@ class ObjAdapter(context: Context, val iznajm: ArrayList<Iznajmljivacki>): Recyc
     val context = context
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val objIme = itemView.txtNaziv
+        val kapacitet = itemView.txtKapacitet
         val btnSelect = itemView.btn_select
         val btnEdit = itemView.btn_edit
         val btnDelete = itemView.btn_delete
@@ -35,6 +37,7 @@ class ObjAdapter(context: Context, val iznajm: ArrayList<Iznajmljivacki>): Recyc
     override fun onBindViewHolder(holder: ObjAdapter.ViewHolder, position: Int) {
         val iznajmljiv : Iznajmljivacki = iznajm[position]
         holder.objIme.text = iznajmljiv.nazivApp
+        holder.kapacitet.text = "Kapacitet: ${iznajmljiv.kapacitet}"
 
         holder.btnDelete.setOnClickListener(){
             val objektIme = iznajmljiv.nazivApp
@@ -60,15 +63,19 @@ class ObjAdapter(context: Context, val iznajm: ArrayList<Iznajmljivacki>): Recyc
             val inflater = LayoutInflater.from(context)
             val view = inflater.inflate(R.layout.editapp, null)
             val stariNaziv : TextView = view.findViewById(R.id.stariNaziv)
+            val noviNaziv : EditText = view.findViewById(R.id.noviNaziv)
+            val noviKapacitet : EditText = view.findViewById(R.id.noviKapacitet)
 
             stariNaziv.text = iznajmljiv.nazivApp
+            noviNaziv.setText(iznajmljiv.nazivApp)
+            noviKapacitet.setText(iznajmljiv.kapacitet)
             val staroIme = stariNaziv.text.toString()
             val builder = AlertDialog.Builder(context)
                 .setTitle("Uredi objekt")
                 .setView(view)
                 .setPositiveButton("Uredi", DialogInterface.OnClickListener{dialog, which ->
                     val isUpdate = MainActivity.dbHandler.editObjekt(iznajmljiv.idApp.toString(),
-                        view.noviNaziv.text.toString(), staroIme)
+                        view.noviNaziv.text.toString(), staroIme, view.noviKapacitet.text.toString().toInt())
                     if(isUpdate == true){
                         iznajm[position].nazivApp = view.noviNaziv.text.toString()
                         notifyDataSetChanged()

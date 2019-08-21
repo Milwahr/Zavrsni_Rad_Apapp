@@ -15,12 +15,18 @@ class addObjekat : AppCompatActivity() {
         setTitle("Apartments Reservations Application")
 
         btn_spremi.setOnClickListener(){
-            if(edittxt_Naziv.text.isEmpty()){
+            if (edittxt_Naziv.text.isEmpty()){
                 Toast.makeText(this, "Unesite ime objekta", Toast.LENGTH_SHORT).show()
                 edittxt_Naziv.requestFocus()
-            }else{
+            }
+            else if (edittxt_Kapacitet.text.isEmpty()){
+                Toast.makeText(this, "Unesite kapacitet objekta", Toast.LENGTH_SHORT).show()
+                edittxt_Kapacitet.requestFocus()
+            }
+            else{
                 val objekat = Iznajmljivacki()
                 objekat.nazivApp = edittxt_Naziv.text.toString()
+                objekat.kapacitet = edittxt_Kapacitet.text.toString().toInt()
 
                 MainActivity.dbHandler.addObjekti(this, objekat)
 
@@ -44,5 +50,6 @@ class addObjekat : AppCompatActivity() {
 
     private fun clearEdits(){
         edittxt_Naziv.text.clear()
+        edittxt_Kapacitet.text.clear()
     }
 }

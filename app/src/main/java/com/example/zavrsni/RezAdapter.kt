@@ -30,6 +30,8 @@ class RezAdapter(context: Context, val rezerv: ArrayList<Rezervacije>): Recycler
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nazivRez = itemView.rezNaziv
         val datumRez = itemView.rezDatum
+        val osobaRez = itemView.rezOsoba
+        val iznosRez = itemView.rezIznos
         val rezDelete = itemView.deleteRez
         val rezEdit = itemView.editRez
     }
@@ -48,6 +50,8 @@ class RezAdapter(context: Context, val rezerv: ArrayList<Rezervacije>): Recycler
         val rezervator: Rezervacije = rezerv[position]
         holder.nazivRez.text = rezervator.imeRez
         holder.datumRez.text = "${rezervator.datumDOL} - ${rezervator.datumODL}"
+        holder.iznosRez.text = "${rezervator.placanje}"
+        holder.osobaRez.text = "${rezervator.odrasli + rezervator.djeca} (Odrasli: ${rezervator.odrasli}, djeca: ${rezervator.djeca})"
 
         holder.rezDelete.setOnClickListener() {
             val rezervacijaIme = rezervator.imeRez
@@ -75,12 +79,18 @@ class RezAdapter(context: Context, val rezerv: ArrayList<Rezervacije>): Recycler
             val prenosDOL = rezervator.datumDOL
             val prenosODL = rezervator.datumODL
             val prenosID = rezervator.idRez.toString()
+            val prenosIznos = rezervator.placanje
+            val prenosOdr = rezervator.odrasli.toString()
+            val prenosDj = rezervator.djeca.toString()
 
             val intent = Intent(context, EditRez::class.java)
             intent.putExtra("prenosIme", prenosIme)
             intent.putExtra("prenosDOL", prenosDOL)
             intent.putExtra("prenosODL", prenosODL)
             intent.putExtra("prenosID", prenosID)
+            intent.putExtra("prenosIznos", prenosIznos)
+            intent.putExtra("prenosOdr", prenosOdr)
+            intent.putExtra("prenosDj", prenosDj)
             context.startActivity(intent)
         }
     }

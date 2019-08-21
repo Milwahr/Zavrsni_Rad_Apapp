@@ -41,12 +41,25 @@ class DodajRez : AppCompatActivity() {
                 } else if (txtnovidatumdol.text.isEmpty()) {
                     Toast.makeText(this, "Unesite datum dolaska", Toast.LENGTH_SHORT).show()
                     txtnovidatumdol.requestFocus()
+                } else if(txtNoviIznos.text.isEmpty()){
+                    Toast.makeText(this, "Unesite iznos", Toast.LENGTH_SHORT).show()
+                    txtNoviIznos.requestFocus()
+                }
+                else if(txtNoviOdrasli.text.isEmpty()){
+                    Toast.makeText(this, "Unesite broj odrasli", Toast.LENGTH_SHORT).show()
+                    txtNoviIznos.requestFocus()
+                }
+                else if(txtNoviDjeca.text.isEmpty()){
+                    txtNoviDjeca.setText(0)
                 } else {
                     val rezerv = Rezervacije()
                     rezerv.imeRez = txtnovaRez.text.toString()
                     rezerv.datumDOL = txtnovidatumdol.text.toString()
                     rezerv.datumODL = txtNoviDatumOdl.text.toString()
                     rezerv.rezAppNaziv = rezName
+                    rezerv.placanje = txtNoviIznos.text.toString() +" "+ noviValuta.text
+                    rezerv.odrasli = txtNoviOdrasli.text.toString().toInt()
+                    rezerv.djeca = txtNoviDjeca.text.toString().toInt()
 
                     MainActivity.dbHandler.addRez(this, rezerv)
 
@@ -77,6 +90,9 @@ class DodajRez : AppCompatActivity() {
         txtnovaRez.text.clear()
         txtNoviDatumOdl.text.clear()
         txtnovidatumdol.text.clear()
+        txtNoviDjeca.text.clear()
+        txtNoviOdrasli.text.clear()
+        txtNoviIznos.text.clear()
     }
 
 
