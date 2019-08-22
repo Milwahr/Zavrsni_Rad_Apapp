@@ -47,6 +47,31 @@ class EditRez : AppCompatActivity() {
                             editovanDatumOdl.text.toString(), editovanOdrasli.text.toString().toInt(),
                             editovanDjeca.text.toString().toInt(), editovanIznos.text.toString()
                         )
+                        if(editovanNaziv.text.isEmpty()){
+                            Toast.makeText(this, "Unesite naziv rezervacije", Toast.LENGTH_SHORT).show()
+                            editovanNaziv.requestFocus()
+                        }
+                        else if (editovanDatumDol.text.isEmpty()){
+                            Toast.makeText(this, "Unesite datum dolaska", Toast.LENGTH_SHORT).show()
+                            editovanDatumDol.requestFocus()
+                        }
+                        else if (editovanDatumOdl.text.isEmpty()){
+                            Toast.makeText(this, "Unesite datum odlaska", Toast.LENGTH_SHORT).show()
+                            editovanDatumOdl.requestFocus()
+                        }
+                        else if (editovanIznos.text.isEmpty()){
+                            Toast.makeText(this, "Unesite iznos", Toast.LENGTH_SHORT).show()
+                            editovanIznos.requestFocus()
+                        }
+                        else if (editovanOdrasli.text.isEmpty()){
+                            Toast.makeText(this, "Unesite broj odrasli", Toast.LENGTH_SHORT).show()
+                            editovanOdrasli.requestFocus()
+                        }
+                        else if (editovanDjeca.text.isEmpty()){
+                            Toast.makeText(this, "Unesite broj djece", Toast.LENGTH_SHORT).show()
+                            editovanDjeca.requestFocus()
+                        }
+                        else{
                         if (isUpdate == true) {
                             Toast.makeText(
                                 this,
@@ -57,11 +82,13 @@ class EditRez : AppCompatActivity() {
                         } else {
                             Toast.makeText(this, "Greška u uređivanju", Toast.LENGTH_SHORT).show()
                         }
+                    }
                     })
                     .setNegativeButton("Ne", null)
 
                 val alert = builder.create()
                 alert.show()
+                upozorenjeEdit.setText("")
             }else{
                 upozorenjeEdit.setText("Datum odlaska mora biti nakon datuma dolaska")
                 upozorenjeEdit.setTextColor(Color.RED)

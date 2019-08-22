@@ -8,6 +8,7 @@ import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
@@ -27,6 +28,7 @@ class PrikazSveAdapter(context: Context, val rezerv: ArrayList<Rezervacije>): Re
         val statusSve = itemView.statusSve
 
         val deleteSve = itemView.deletePrikSve
+        val infoSve = itemView.infoPrikSve
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PrikazSveAdapter.ViewHolder {
@@ -82,6 +84,42 @@ class PrikazSveAdapter(context: Context, val rezerv: ArrayList<Rezervacije>): Re
                 .setNegativeButton("Ne", DialogInterface.OnClickListener{dialog, which ->})
                 .setIcon(R.drawable.ic_warning_black_24dp)
                 .show()
+        }
+
+        holder.infoSve.setOnClickListener(){
+            val inflater = LayoutInflater.from(context)
+            val view = inflater.inflate(R.layout.info_sve, null)
+            val infoNaziv : TextView = view.findViewById(R.id.infoNaziv)
+            val infoDatum : TextView = view.findViewById(R.id.infoDatum)
+            val infoIznos : TextView = view.findViewById(R.id.infoIznos)
+            val infoStatus : TextView = view.findViewById(R.id.infoStatus)
+            val infoOsoba : TextView = view.findViewById(R.id.infoOsoba)
+            val infoObjekt : TextView = view.findViewById(R.id.infoObjekt)
+
+            infoNaziv.setText(holder.sveNaziv.text)
+            infoDatum.setText(holder.sveDatum.text)
+            infoObjekt.setText(holder.sveApp.text)
+            infoStatus.setText(holder.statusSve.text)
+            infoIznos.setText(rez.placanje)
+            infoOsoba.setText("${rez.odrasli+rez.djeca} (Odrasli: ${rez.odrasli}, djeca: ${rez.djeca})")
+
+            if (infoStatus.text == "Rezervirano"){
+                infoStatus.setTextColor(Color.GREEN)
+            }
+            else if (infoStatus.text == "Rezervacija u tijeku"){
+                infoStatus.setTextColor(Color.parseColor("#DF7401"))
+            }
+            else{
+                infoStatus.setTextColor(Color.RED)
+            }
+
+            val builder = AlertDialog.Builder(context)
+                .setTitle("Sve informacije")
+                .setIcon(R.drawable.ic_info_outline_black_24dp)
+                .setView(view)
+                .setPositiveButton("Ok", DialogInterface.OnClickListener{dialog, which ->})
+            val alert = builder.create()
+            alert.show()
         }
     }
     @RequiresApi(Build.VERSION_CODES.O)
