@@ -7,42 +7,43 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="8dp"
         android:fontFamily="@font/open_sans"
         android:text="Upišite ispravak naziva objekta"
         android:textColor="@color/design_default_color_primary"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="232dp"
-        android:fontFamily="@font/open_sans"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="8dp"
         android:text="Stari naziv:"
+        android:fontFamily="@font/open_sans"
         android:textColor="@color/design_default_color_primary"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
         android:id="@+id/stariNaziv"
         android:layout_width="117dp"
         android:layout_height="19dp"
-        android:layout_marginStart="13dp"
+        android:layout_marginStart="8dp"
         android:fontFamily="@font/roboto_medium_italic"
         android:text="TextView"
         android:textColor="#40C4FF"
         android:textSize="14dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/textView4" />
 
     <EditText
@@ -55,7 +56,7 @@
         android:inputType="textPersonName"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="@+id/textView29"
-        app:layout_constraintStart_toEndOf="@+id/textView29"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/textView29" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -63,16 +64,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="46dp" />
+        app:layout_constraintGuide_begin="117dp" />
 
     <TextView
         android:id="@+id/textView28"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="8dp"
         android:text="Kapacitet:"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/noviNaziv" />
+        android:fontFamily="@font/open_sans"
+        android:textColor="@color/design_default_color_primary"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/textView29" />
 
     <EditText
         android:id="@+id/noviKapacitet"
@@ -81,17 +86,23 @@
         android:layout_marginStart="8dp"
         android:ems="10"
         android:inputType="number"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="@+id/textView28"
-        app:layout_constraintStart_toEndOf="@+id/textView28"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/textView28" />
 
     <TextView
         android:id="@+id/textView29"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="8dp"
         android:text="Novi Naziv:"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
+
+        android:fontFamily="@font/open_sans"
+        android:textColor="@color/design_default_color_primary"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
