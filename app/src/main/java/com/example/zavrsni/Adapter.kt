@@ -76,12 +76,20 @@ class ObjAdapter(context: Context, val iznajm: ArrayList<Iznajmljivacki>): Recyc
                 .setPositiveButton("Uredi", DialogInterface.OnClickListener{dialog, which ->
                     val isUpdate = MainActivity.dbHandler.editObjekt(iznajmljiv.idApp.toString(),
                         view.noviNaziv.text.toString(), staroIme, view.noviKapacitet.text.toString().toInt())
-                    if(isUpdate == true){
-                        iznajm[position].nazivApp = view.noviNaziv.text.toString()
-                        notifyDataSetChanged()
-                        Toast.makeText(context, "Uspješno uređeno", Toast.LENGTH_SHORT).show()
-                    }else
-                        Toast.makeText(context, "Greška u uređivanju", Toast.LENGTH_SHORT).show()
+                    if(noviNaziv.text.isEmpty()){
+                        Toast.makeText(context, "Niste upisali novi naziv", Toast.LENGTH_SHORT).show()
+                    }
+                    else if(noviKapacitet.text.isEmpty()){
+                        Toast.makeText(context, "Niste upisali kapacitet", Toast.LENGTH_SHORT).show()
+                    }
+                    else {
+                        if(isUpdate == true){
+                            iznajm[position].nazivApp = view.noviNaziv.text.toString()
+                            notifyDataSetChanged()
+                            Toast.makeText(context, "Uspješno uređeno", Toast.LENGTH_SHORT).show()
+                        }else
+                            Toast.makeText(context, "Greška u uređivanju", Toast.LENGTH_SHORT).show()
+                    }
                 })
                 .setNegativeButton("Odustani", DialogInterface.OnClickListener{dialog, which ->})
             val alert = builder.create()
