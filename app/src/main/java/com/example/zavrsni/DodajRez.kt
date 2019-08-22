@@ -50,8 +50,8 @@ class DodajRez : AppCompatActivity() {
                     txtNoviIznos.requestFocus()
                 }
                 else if(txtNoviDjeca.text.isEmpty()){
-                    txtNoviDjeca.setText(0)
-                } else {
+                    txtNoviDjeca.setText("0")
+                }
                     val rezerv = Rezervacije()
                     rezerv.imeRez = txtnovaRez.text.toString()
                     rezerv.datumDOL = txtnovidatumdol.text.toString()
@@ -73,7 +73,7 @@ class DodajRez : AppCompatActivity() {
 
                     clearEdits()
                     txtnovaRez.requestFocus()
-                }
+
             }else{
                 upozorenje.setText("Datum odlaska mora biti nakon datuma dolaska")
                 upozorenje.setTextColor(Color.RED)
@@ -93,6 +93,7 @@ class DodajRez : AppCompatActivity() {
         txtNoviDjeca.text.clear()
         txtNoviOdrasli.text.clear()
         txtNoviIznos.text.clear()
+        upozorenje.text = ""
     }
 
 
