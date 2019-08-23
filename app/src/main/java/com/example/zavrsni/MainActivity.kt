@@ -87,6 +87,10 @@ class MainActivity : AppCompatActivity() {
                 .setView(view)
                 .setPositiveButton("Uredu", DialogInterface.OnClickListener{dialog, which ->})
                 .setIcon(R.drawable.ic_help_outline_blue_24dp)
+                .setNeutralButton("Dodatno", DialogInterface.OnClickListener{dialog, which ->
+                    val intent = Intent(this, AppInfo::class.java)
+                    this.startActivity(intent)
+                })
             val alert = builder.create()
             alert.show()
 

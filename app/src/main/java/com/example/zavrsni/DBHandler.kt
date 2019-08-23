@@ -176,6 +176,113 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
         return rezerv
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun filterRez(context: Context, vred: String, objekt: String, datumDol: String, datumOdl: String): ArrayList<Rezervacije>{
+
+        val rezerv = ArrayList<Rezervacije>()
+
+        if(vred == "a"){
+            val qry = "SELECT * FROM $TABLE_REZ_NAME WHERE $COLUMN_REZ_APPNAME = ? ORDER BY $COLUMN_DATE_AR ASC"
+            val db = this.writableDatabase
+            val cursor = db.rawQuery(qry, arrayOf(objekt))
+            var brojac = 0
+
+            if(cursor.count == 0)
+                Toast.makeText(context, "Nema rezervacija u objektu $objekt", Toast.LENGTH_SHORT).show()
+            else{
+                cursor.moveToFirst()
+                while (!cursor.isAfterLast){
+                    val rezervac = Rezervacije()
+                    var datumPih = cursor.getString(cursor.getColumnIndex(COLUMN_DATE_LE)).toString()
+                    if(datumPih.compareTo(datumDol)>=1 && datumPih.compareTo(datumOdl)<=0){
+                        rezervac.idRez = cursor.getInt(cursor.getColumnIndex(COLUMN_REZ_ID))
+                        rezervac.imeRez = cursor.getString(cursor.getColumnIndex(COLUMN_REZ_NAME))
+                        rezervac.rezAppNaziv = cursor.getString(cursor.getColumnIndex(COLUMN_REZ_APPNAME))
+                        rezervac.datumDOL = cursor.getString(cursor.getColumnIndex(COLUMN_DATE_AR))
+                        rezervac.datumODL = cursor.getString(cursor.getColumnIndex(COLUMN_DATE_LE))
+                        rezervac.placanje = cursor.getString(cursor.getColumnIndex(COLUMN_REZ_PLAC))
+                        rezervac.odrasli = cursor.getInt(cursor.getColumnIndex(COLUMN_REZ_ODR))
+                        rezervac.djeca = cursor.getInt(cursor.getColumnIndex(COLUMN_REZ_DJ))
+                        rezerv.add(rezervac)
+                        brojac++
+                    }else{
+                        Log.e("TAG", "Nepripadam")
+                    }
+                    cursor.moveToNext()
+                }
+                Toast.makeText(context, "Pronađeno $brojac rezervacija", Toast.LENGTH_SHORT).show()
+            }
+            cursor.close()
+            db.close()
+        }
+        if(vred == "b"){
+            val qry = "SELECT * FROM $TABLE_REZ_NAME ORDER BY $COLUMN_DATE_AR ASC"
+            val db = this.writableDatabase
+            val cursor = db.rawQuery(qry, arrayOf(objekt))
+            var brojac = 0
+
+            if(cursor.count == 0)
+                Toast.makeText(context, "Nema rezervacija u objektu $objekt", Toast.LENGTH_SHORT).show()
+            else{
+                cursor.moveToFirst()
+                while (!cursor.isAfterLast){
+                    val rezervac = Rezervacije()
+                    var datumPih = cursor.getString(cursor.getColumnIndex(COLUMN_DATE_LE)).toString()
+                    if(datumPih.compareTo(datumDol)>=1 && datumPih.compareTo(datumOdl)<=0){
+                        rezervac.idRez = cursor.getInt(cursor.getColumnIndex(COLUMN_REZ_ID))
+                        rezervac.imeRez = cursor.getString(cursor.getColumnIndex(COLUMN_REZ_NAME))
+                        rezervac.rezAppNaziv = cursor.getString(cursor.getColumnIndex(COLUMN_REZ_APPNAME))
+                        rezervac.datumDOL = cursor.getString(cursor.getColumnIndex(COLUMN_DATE_AR))
+                        rezervac.datumODL = cursor.getString(cursor.getColumnIndex(COLUMN_DATE_LE))
+                        rezervac.placanje = cursor.getString(cursor.getColumnIndex(COLUMN_REZ_PLAC))
+                        rezervac.odrasli = cursor.getInt(cursor.getColumnIndex(COLUMN_REZ_ODR))
+                        rezervac.djeca = cursor.getInt(cursor.getColumnIndex(COLUMN_REZ_DJ))
+                        rezerv.add(rezervac)
+                        brojac++
+                    }else{
+                        Log.e("TAG", "Nepripadam")
+                    }
+                    cursor.moveToNext()
+                }
+                Toast.makeText(context, "Pronađeno $brojac rezervacija", Toast.LENGTH_SHORT).show()
+            }
+            cursor.close()
+            db.close()
+        }
+        if(vred == "c"){
+            val qry = "SELECT * FROM $TABLE_REZ_NAME WHERE $COLUMN_REZ_APPNAME = ? ORDER BY $COLUMN_DATE_AR ASC"
+            val db = this.writableDatabase
+            val cursor = db.rawQuery(qry, arrayOf(objekt))
+            var brojac = 0
+
+            if(cursor.count == 0)
+                Toast.makeText(context, "Nema rezervacija u objektu $objekt", Toast.LENGTH_SHORT).show()
+            else{
+                cursor.moveToFirst()
+                while (!cursor.isAfterLast){
+                    val rezervac = Rezervacije()
+
+                        rezervac.idRez = cursor.getInt(cursor.getColumnIndex(COLUMN_REZ_ID))
+                        rezervac.imeRez = cursor.getString(cursor.getColumnIndex(COLUMN_REZ_NAME))
+                        rezervac.rezAppNaziv = cursor.getString(cursor.getColumnIndex(COLUMN_REZ_APPNAME))
+                        rezervac.datumDOL = cursor.getString(cursor.getColumnIndex(COLUMN_DATE_AR))
+                        rezervac.datumODL = cursor.getString(cursor.getColumnIndex(COLUMN_DATE_LE))
+                        rezervac.placanje = cursor.getString(cursor.getColumnIndex(COLUMN_REZ_PLAC))
+                        rezervac.odrasli = cursor.getInt(cursor.getColumnIndex(COLUMN_REZ_ODR))
+                        rezervac.djeca = cursor.getInt(cursor.getColumnIndex(COLUMN_REZ_DJ))
+                        rezerv.add(rezervac)
+                        brojac++
+
+                    cursor.moveToNext()
+                }
+                Toast.makeText(context, "Pronađeno $brojac rezervacija", Toast.LENGTH_SHORT).show()
+            }
+            cursor.close()
+            db.close()
+        }
+        return rezerv
+    }
+
     fun addObjekti(context: Context, objekat: Iznajmljivacki){
         val values = ContentValues()
         values.put(COLUMN_APP_NAME, objekat.nazivApp)
