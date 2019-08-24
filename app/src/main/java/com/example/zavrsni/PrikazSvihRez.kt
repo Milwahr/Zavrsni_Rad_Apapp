@@ -1,9 +1,12 @@
 package com.example.zavrsni
 
+import android.annotation.SuppressLint
+import android.app.DatePickerDialog
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -11,7 +14,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.filter_layout.*
 import kotlinx.android.synthetic.main.filter_layout.view.*
+import java.util.*
 
 class PrikazSvihRez : AppCompatActivity() {
 
@@ -37,11 +42,13 @@ class PrikazSvihRez : AppCompatActivity() {
         val id = item.itemId
 
         if(id == R.id.filter){
+
+
             val inflater = LayoutInflater.from(this)
             val view = inflater.inflate(R.layout.filter_layout, null)
             view.brisiPolja.setOnClickListener(){
-                view.filterDol.text.clear()
-                view.filterOdl.text.clear()
+                filterDol.text.clear()
+                filterOdl.text.clear()
             }
             val builder = AlertDialog.Builder(this)
                 .setTitle("Filter")
