@@ -177,7 +177,7 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun filterRez(context: Context, vred: String, objekt: String, datumDol: String, datumOdl: String): ArrayList<Rezervacije>{
+    fun filterRez(context: Context, vred: String, objekt: String, godina: String): ArrayList<Rezervacije>{
 
         val rezerv = ArrayList<Rezervacije>()
 
@@ -194,7 +194,7 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
                 while (!cursor.isAfterLast){
                     val rezervac = Rezervacije()
                     var datumPih = cursor.getString(cursor.getColumnIndex(COLUMN_DATE_LE)).toString()
-                    if(datumPih.compareTo(datumDol)>=1 && datumPih.compareTo(datumOdl)<=0){
+                    if(datumPih.compareTo("$godina/01/01")>=1 && datumPih.compareTo("$godina/12/31")<=0){
                         rezervac.idRez = cursor.getInt(cursor.getColumnIndex(COLUMN_REZ_ID))
                         rezervac.imeRez = cursor.getString(cursor.getColumnIndex(COLUMN_REZ_NAME))
                         rezervac.rezAppNaziv = cursor.getString(cursor.getColumnIndex(COLUMN_REZ_APPNAME))
@@ -218,7 +218,7 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
         if(vred == "b"){
             val qry = "SELECT * FROM $TABLE_REZ_NAME ORDER BY $COLUMN_DATE_AR ASC"
             val db = this.writableDatabase
-            val cursor = db.rawQuery(qry, arrayOf(objekt))
+            val cursor = db.rawQuery(qry, null)
             var brojac = 0
 
             if(cursor.count == 0)
@@ -228,7 +228,7 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
                 while (!cursor.isAfterLast){
                     val rezervac = Rezervacije()
                     var datumPih = cursor.getString(cursor.getColumnIndex(COLUMN_DATE_LE)).toString()
-                    if(datumPih.compareTo(datumDol)>=1 && datumPih.compareTo(datumOdl)<=0){
+                    if(datumPih.compareTo("$godina/01/01")>=1 && datumPih.compareTo("$godina/12/31")<=0){
                         rezervac.idRez = cursor.getInt(cursor.getColumnIndex(COLUMN_REZ_ID))
                         rezervac.imeRez = cursor.getString(cursor.getColumnIndex(COLUMN_REZ_NAME))
                         rezervac.rezAppNaziv = cursor.getString(cursor.getColumnIndex(COLUMN_REZ_APPNAME))

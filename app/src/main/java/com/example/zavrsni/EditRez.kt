@@ -132,7 +132,7 @@ class EditRez : AppCompatActivity() {
     }
     fun editMjesec(mjesec: Int): String{
         var mjesecEdit = (mjesec+1).toString()
-        if(mjesec<10){
+        if(mjesec<9){
             mjesecEdit = "0$mjesecEdit"
             return mjesecEdit
         }else{

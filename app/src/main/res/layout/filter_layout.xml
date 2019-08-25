@@ -23,8 +23,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
-        android:text="Datum:"
         android:fontFamily="@font/open_sans"
+        android:text="Godina:"
         android:textColor="@color/design_default_color_primary"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/guideline14"
@@ -50,44 +50,16 @@
         app:layout_constraintGuide_begin="40dp" />
 
     <EditText
-        android:id="@+id/filterDol"
+        android:id="@+id/godina"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Datum dolaska"
-        android:clickable="true"
+        android:inputType="number"
         android:fontFamily="@font/open_sans"
+        android:hint="Godina"
         android:textColor="@color/design_default_color_primary"
-        android:editable="false"
-        android:focusable="false"
         app:layout_constraintStart_toStartOf="@+id/guideline14"
         app:layout_constraintTop_toBottomOf="@+id/textView43" />
 
-    <EditText
-        android:id="@+id/filterOdl"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:ems="10"
-        android:hint="Datum odlaska"
-        android:clickable="true"
-        android:fontFamily="@font/open_sans"
-        android:textColor="@color/design_default_color_primary"
-        android:editable="false"
-        android:focusable="false"
-        app:layout_constraintStart_toStartOf="@+id/guideline14"
-        app:layout_constraintTop_toBottomOf="@+id/filterDol" />
-
-    <ImageButton
-        android:id="@+id/brisiPolja"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:background="@android:color/transparent"
-        app:layout_constraintBottom_toTopOf="@+id/filterOdl"
-        app:layout_constraintStart_toEndOf="@+id/filterDol"
-        app:layout_constraintTop_toBottomOf="@+id/filterDol"
-        app:layout_constraintVertical_bias="0.526"
-        app:srcCompat="@drawable/deletepolje" />
 </androidx.constraintlayout.widget.ConstraintLayout>

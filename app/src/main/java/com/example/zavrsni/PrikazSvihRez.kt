@@ -1,12 +1,9 @@
 package com.example.zavrsni
 
-import android.annotation.SuppressLint
-import android.app.DatePickerDialog
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -16,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.filter_layout.*
 import kotlinx.android.synthetic.main.filter_layout.view.*
-import java.util.*
 
 class PrikazSvihRez : AppCompatActivity() {
 
@@ -46,10 +42,7 @@ class PrikazSvihRez : AppCompatActivity() {
 
             val inflater = LayoutInflater.from(this)
             val view = inflater.inflate(R.layout.filter_layout, null)
-            view.brisiPolja.setOnClickListener(){
-                filterDol.text.clear()
-                filterOdl.text.clear()
-            }
+
             val builder = AlertDialog.Builder(this)
                 .setTitle("Filter")
                 .setView(view)
@@ -57,28 +50,24 @@ class PrikazSvihRez : AppCompatActivity() {
                     var test = 0
                     var vred: String?
                     val intent = Intent(this, FilterAktivitet::class.java)
-                    if(!view.filterDol.text.isEmpty() && !view.filterOdl.text.isEmpty()){
+                    if(!view.godina.text.isEmpty()){
                         test = 1
                     }
                     if(!view.filterObjekt.text.isEmpty() && test == 1){
                         vred = "a"
                         val objekt = view.filterObjekt.text.toString()
-                        val datumDol = view.filterDol.text.toString()
-                        val datumOdl = view.filterOdl.text.toString()
+                        val godina = view.godina.text.toString()
                         intent.putExtra("objekt", objekt)
-                        intent.putExtra("datumOdl", datumOdl)
-                        intent.putExtra("datumDol", datumDol)
+                        intent.putExtra("godina", godina)
                         intent.putExtra ("vred", vred)
                         this.startActivity(intent)
                     }
                     else if (view.filterObjekt.text.isEmpty() && test == 1){
                         vred = "b"
                         //val objekt = view.filterObjekt.text.toString()
-                        val datumDol = view.filterDol.text.toString()
-                        val datumOdl = view.filterOdl.text.toString()
+                        val godina = view.godina.text.toString()
                         //intent.putExtra("objekt", objekt)
-                        intent.putExtra("datumOdl", datumOdl)
-                        intent.putExtra("datumDol", datumDol)
+                        intent.putExtra("godina", godina)
                         intent.putExtra ("vred", vred)
                         this.startActivity(intent)
                     }

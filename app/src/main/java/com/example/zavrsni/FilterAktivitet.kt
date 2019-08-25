@@ -24,17 +24,14 @@ class FilterAktivitet : AppCompatActivity() {
         intent = intent
 
         val vred = intent.getStringExtra("vred")
-        var datumOdl: String = ""
-        var datumDol: String = ""
+        var godina: String = ""
         var objekt: String = ""
         if(vred == "a"){
-            datumOdl = intent.getStringExtra("datumOdl")
-            datumDol = intent.getStringExtra("datumDol")
+            godina = intent.getStringExtra("godina")
             objekt = intent.getStringExtra("objekt")
         }
         else if(vred == "b"){
-            datumOdl = intent.getStringExtra("datumOdl")
-            datumDol = intent.getStringExtra("datumDol")
+            godina = intent.getStringExtra("godina")
         }
         else if(vred == "c"){
             objekt = intent.getStringExtra("objekt")
@@ -43,11 +40,11 @@ class FilterAktivitet : AppCompatActivity() {
             Toast.makeText(this, "Greska", Toast.LENGTH_LONG).show()
             this.startActivity(intent2)
         }
-        prikazFilterRez(vred, objekt, datumDol, datumOdl)
+        prikazFilterRez(vred, objekt, godina)
     }
     @RequiresApi(Build.VERSION_CODES.O)
-    fun prikazFilterRez(vred: String, objekt: String, datumDol: String, datumOdl: String){
-        val sveRezLista = MainActivity.dbHandler.filterRez(this, vred, objekt, datumDol, datumOdl)
+    fun prikazFilterRez(vred: String, objekt: String, godina: String){
+        val sveRezLista = MainActivity.dbHandler.filterRez(this, vred, objekt, godina)
         viewManager = LinearLayoutManager(this)
         viewAdapter = PrikazSveAdapter(this, sveRezLista)
         recyclerView = findViewById<RecyclerView>(R.id.filter_rv).apply {
