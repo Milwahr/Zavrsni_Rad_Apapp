@@ -214,18 +214,6 @@
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="@+id/textView26" />
 
-    <ToggleButton
-        android:id="@+id/editovanValuta"
-        android:layout_width="51dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="2dp"
-        android:text="ToggleButton"
-        android:textOff="KN"
-        android:textOn="Euro"
-        app:layout_constraintBottom_toBottomOf="@+id/editovanIznos"
-        app:layout_constraintStart_toEndOf="@+id/editovanIznos"
-        app:layout_constraintTop_toTopOf="@+id/editovanIznos" />
-
     <EditText
         android:id="@+id/editovanOdrasli"
         android:layout_width="88dp"
@@ -250,4 +238,16 @@
         app:layout_constraintBottom_toBottomOf="@+id/editovanOdrasli"
         app:layout_constraintStart_toEndOf="@+id/editovanOdrasli"
         app:layout_constraintTop_toTopOf="@+id/editovanOdrasli" />
+
+    <TextView
+        android:id="@+id/valuta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="kn"
+        android:fontFamily="@font/open_sans"
+        android:textColor="@color/design_default_color_primary"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/editovanIznos"
+        app:layout_constraintStart_toEndOf="@+id/editovanIznos"
+        app:layout_constraintTop_toTopOf="@+id/editovanIznos" />
 </androidx.constraintlayout.widget.ConstraintLayout>

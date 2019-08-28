@@ -20,7 +20,7 @@ class AppInfo : AppCompatActivity() {
                 "hrvatskim iznajmljivacima za organiziranje rezervacija u iznajmljivackim objektima"
         izradio.text = "Roberto Milic"
         mentor.text = "Doc. dr. sc. Tihomir Orehovacki"
-        sveuciliste. text = "Sveuciliste Jurja Dobrile \n Fakultet Informatike u Puli"
+        sveuciliste. text = "Sveuciliste Jurja Dobrile \nFakultet Informatike u Puli"
         razlogIzrade.text = "Aplikacija je izradjena kao zavrsni rad za prediplomski studij"
 
     }

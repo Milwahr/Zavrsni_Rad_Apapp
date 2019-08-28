@@ -50,7 +50,7 @@ class RezAdapter(context: Context, val rezerv: ArrayList<Rezervacije>): Recycler
         val rezervator: Rezervacije = rezerv[position]
         holder.nazivRez.text = rezervator.imeRez
         holder.datumRez.text = "${rezervator.datumDOL} - ${rezervator.datumODL}"
-        holder.iznosRez.text = "${rezervator.placanje}"
+        holder.iznosRez.text = "${rezervator.placanje}kn"
         holder.osobaRez.text = "${rezervator.odrasli + rezervator.djeca} (Odrasli: ${rezervator.odrasli}, djeca: ${rezervator.djeca})"
 
         holder.rezDelete.setOnClickListener() {

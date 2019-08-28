@@ -31,33 +31,40 @@ class DodajRez : AppCompatActivity() {
         }
 
         spremiRez.setOnClickListener(){
+            var test = 0
             if(txtnovidatumdol.text.toString().compareTo(txtNoviDatumOdl.text.toString())<0) {
                 if (txtnovaRez.text.isEmpty()) {
                     Toast.makeText(this, "Unesite naziv rezervacije", Toast.LENGTH_SHORT).show()
                     txtnovaRez.requestFocus()
+                    test = 1
                 } else if (txtNoviDatumOdl.text.isEmpty()) {
                     Toast.makeText(this, "Unesite datum odlaska", Toast.LENGTH_SHORT).show()
                     txtNoviDatumOdl.requestFocus()
+                    test = 1
                 } else if (txtnovidatumdol.text.isEmpty()) {
                     Toast.makeText(this, "Unesite datum dolaska", Toast.LENGTH_SHORT).show()
                     txtnovidatumdol.requestFocus()
+                    test = 1
                 } else if(txtNoviIznos.text.isEmpty()){
                     Toast.makeText(this, "Unesite iznos", Toast.LENGTH_SHORT).show()
                     txtNoviIznos.requestFocus()
+                    test = 1
                 }
                 else if(txtNoviOdrasli.text.isEmpty()){
                     Toast.makeText(this, "Unesite broj odrasli", Toast.LENGTH_SHORT).show()
-                    txtNoviIznos.requestFocus()
+                    txtNoviOdrasli.requestFocus()
+                    test = 1
                 }
-                else if(txtNoviDjeca.text.isEmpty()){
+                if (txtNoviDjeca.text.isEmpty()){
                     txtNoviDjeca.setText("0")
                 }
+                if(test == 0) {
                     val rezerv = Rezervacije()
                     rezerv.imeRez = txtnovaRez.text.toString()
                     rezerv.datumDOL = txtnovidatumdol.text.toString()
                     rezerv.datumODL = txtNoviDatumOdl.text.toString()
                     rezerv.rezAppNaziv = rezName
-                    rezerv.placanje = txtNoviIznos.text.toString() +" "+ noviValuta.text
+                    rezerv.placanje = txtNoviIznos.text.toString()
                     rezerv.odrasli = txtNoviOdrasli.text.toString().toInt()
                     rezerv.djeca = txtNoviDjeca.text.toString().toInt()
 
@@ -73,7 +80,11 @@ class DodajRez : AppCompatActivity() {
 
                     clearEdits()
                     txtnovaRez.requestFocus()
-
+                }
+                else{
+                    upozorenje.setText("Niste sve potrebne podatke upisali")
+                    upozorenje.setTextColor(Color.RED)
+                }
             }else{
                 upozorenje.setText("Datum odlaska mora biti nakon datuma dolaska")
                 upozorenje.setTextColor(Color.RED)

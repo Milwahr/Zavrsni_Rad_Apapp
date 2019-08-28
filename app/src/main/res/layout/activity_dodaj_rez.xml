@@ -239,18 +239,6 @@
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="@+id/textView24" />
 
-    <ToggleButton
-        android:id="@+id/noviValuta"
-        android:layout_width="46dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="8dp"
-        android:text="ToggleButton"
-        android:textOff="kn"
-        android:textOn="Euro"
-        app:layout_constraintBottom_toBottomOf="@+id/txtNoviIznos"
-        app:layout_constraintStart_toEndOf="@+id/txtNoviIznos"
-        app:layout_constraintTop_toTopOf="@+id/txtNoviIznos" />
-
     <TextView
         android:id="@+id/textView25"
         android:layout_width="wrap_content"
@@ -292,4 +280,17 @@
         app:layout_constraintBottom_toBottomOf="@+id/txtNoviOdrasli"
         app:layout_constraintStart_toEndOf="@+id/txtNoviOdrasli"
         app:layout_constraintTop_toTopOf="@+id/txtNoviOdrasli" />
+
+    <TextView
+        android:id="@+id/editValuta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="kn"
+        android:fontFamily="@font/open_sans"
+        android:textColor="@color/design_default_color_primary"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/txtNoviIznos"
+        app:layout_constraintStart_toEndOf="@+id/txtNoviIznos"
+        app:layout_constraintTop_toTopOf="@+id/txtNoviIznos"
+        app:layout_constraintVertical_bias="0.535" />
 </androidx.constraintlayout.widget.ConstraintLayout>

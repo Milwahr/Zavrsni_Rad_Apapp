@@ -100,7 +100,7 @@ class PrikazSveAdapter(context: Context, val rezerv: ArrayList<Rezervacije>): Re
             infoDatum.setText(holder.sveDatum.text)
             infoObjekt.setText(holder.sveApp.text)
             infoStatus.setText(holder.statusSve.text)
-            infoIznos.setText(rez.placanje)
+            infoIznos.setText("${rez.placanje}kn")
             infoOsoba.setText("${rez.odrasli+rez.djeca} (Odrasli: ${rez.odrasli}, djeca: ${rez.djeca})")
 
             if (infoStatus.text == "Rezervirano"){
