@@ -17,11 +17,11 @@ class AppInfo : AppCompatActivity() {
         val razlogIzrade : TextView = findViewById(R.id.razlogIzrade)
 
         oAplikaciji.text = "Apartments Reservations Application (Apapp) je aplikacija namjenjena " +
-                "hrvatskim iznajmljivacima za organiziranje rezervacija u iznajmljivackim objektima"
-        izradio.text = "Roberto Milic"
-        mentor.text = "Doc. dr. sc. Tihomir Orehovacki"
-        sveuciliste. text = "Sveuciliste Jurja Dobrile \nFakultet Informatike u Puli"
-        razlogIzrade.text = "Aplikacija je izradjena kao zavrsni rad za prediplomski studij"
+                "hrvatskim iznajmljivačima za organiziranje rezervacija u iznajmljivačkim objektima"
+        izradio.text = "Roberto Milić"
+        mentor.text = "Doc. dr. sc. Tihomir Orehovački"
+        sveuciliste. text = "Sveučilište Jurja Dobrile \nFakultet Informatike u Puli"
+        razlogIzrade.text = "Aplikacija je izrađena kao završni rad za prediplomski studij"
 
     }
 }
