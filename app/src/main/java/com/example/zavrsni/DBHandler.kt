@@ -108,35 +108,6 @@ class DBHandler(context: Context, name: String?, factory: SQLiteDatabase.CursorF
         return rezerv
     }
 
-    fun getRez2(context: Context, appIme: String): ArrayList<Rezervacije>{
-        val qry = "SELECT * FROM $TABLE_REZ_NAME WHERE $COLUMN_REZ_APPNAME = ?"
-        val db = this.writableDatabase
-        val cursor = db.rawQuery(qry, arrayOf(appIme))
-
-        val rezerv = ArrayList<Rezervacije>()
-
-        if(cursor.count == 0)
-            Toast.makeText(context, "Nema rezervacija u objektu $appIme", Toast.LENGTH_SHORT).show()
-        else{
-            cursor.moveToFirst()
-            while (!cursor.isAfterLast){
-                val rezervac = Rezervacije()
-                rezervac.idRez = cursor.getInt(cursor.getColumnIndex(COLUMN_REZ_ID))
-                rezervac.imeRez = cursor.getString(cursor.getColumnIndex(COLUMN_REZ_NAME))
-                rezervac.rezAppNaziv = cursor.getString(cursor.getColumnIndex(COLUMN_REZ_APPNAME))
-                rezervac.datumDOL = cursor.getString(cursor.getColumnIndex(COLUMN_DATE_AR))
-                rezervac.datumODL = cursor.getString(cursor.getColumnIndex(COLUMN_DATE_LE))
-                rezerv.add(rezervac)
-                cursor.moveToNext()
-            }
-            Toast.makeText(context, "Pronađeno ${cursor.count} rezervacija", Toast.LENGTH_SHORT).show()
-        }
-        cursor.close()
-        db.close()
-        return rezerv
-    }
-
-
     @RequiresApi(Build.VERSION_CODES.O)
     fun getRezSpecific(context: Context, appIme: String): ArrayList<Rezervacije>{
         val qry = "SELECT * FROM $TABLE_REZ_NAME WHERE $COLUMN_REZ_APPNAME = ? ORDER BY $COLUMN_DATE_AR ASC"
