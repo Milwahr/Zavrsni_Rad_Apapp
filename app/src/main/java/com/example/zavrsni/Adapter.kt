@@ -68,7 +68,7 @@ class ObjAdapter(context: Context, val iznajm: ArrayList<Iznajmljivacki>): Recyc
 
             stariNaziv.text = iznajmljiv.nazivApp
             noviNaziv.setText(iznajmljiv.nazivApp)
-            noviKapacitet.setText(iznajmljiv.kapacitet)
+            noviKapacitet.setText(iznajmljiv.kapacitet.toString())
             val staroIme = stariNaziv.text.toString()
             val builder = AlertDialog.Builder(context)
                 .setTitle("Uredi objekt")
